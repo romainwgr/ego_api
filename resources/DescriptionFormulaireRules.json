@@ -1,0 +1,122 @@
+[
+    {
+        "name": "username",
+        "label": "Username",
+        "type": "text",
+        "required": true,
+        "subtitle": "Username must be between 3 and 20 characters, and can only contain ASCII characters",
+        "ruleType": "regex",
+        "rule": "/^[a-zA-Z0-9]{3,20}$/",
+        "message" : "Error, you incorrectly filled in the username field."
+    },
+    {
+        "name": "userMail",
+        "label": "Email",
+        "type": "email",
+        "required": true,
+        "ruleType": "filter",
+        "rule": "email",
+        "message" : "Error, you incorrectly filled in the email field."
+    },
+    {
+        "name": "userMailConfirm",
+        "label": "Confirm Email",
+        "type": "email",
+        "required": true,
+        "ruleType": "same",
+        "rule": "userMail",
+        "message" : "Error, the email and confirmation email do not match."
+    },
+    {
+        "name": "userPassword",
+        "label": "Password",
+        "type": "password",
+        "required": true,
+        "subtitle": "Password must be between 6 and 30 characters, and must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+        "ruleType": "regex",
+        "rule": "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[\\\\W_]).{6,30}$/",
+        "message" : "Error, you entered a password that does not meet the requirements."
+    },
+    {
+        "name": "userPasswordConfirm",
+        "label": "Confirm Password",
+        "type": "password",
+        "required": true,
+        "ruleType": "same",
+        "rule": "userPassword",
+        "message" : "Error, the password and confirmation password do not match."
+    },
+    {
+        "name": "userLastName",
+        "label": "Last Name",
+        "type": "text",
+        "required": true,
+        "ruleType": "exist",
+        "message" : "Error, you did not fill in the last name field."
+    },
+    {
+        "name": "userFirstName",
+        "label": "First Name",
+        "type": "text",
+        "required": true,
+        "ruleType": "exist",
+        "rule": "userFirstName",
+        "message" : "Error, you did not fill in the first name field."
+    },
+    {
+        "name": "professionalEmail",
+        "label": "Professional Email",
+        "type": "email",
+        "required": true,
+        "ruleType": "filter",
+        "rule": "email",
+        "message" : "Error, you incorrectly filled in the professional email field."
+    },
+    {
+        "name": "userInstitute",
+        "label": "Institute Name",
+        "type": "text",
+        "required": true,
+        "datalist": true,
+        "ruleType": "exist",
+        "rule": "userInstitute",
+        "message" : "Error, you did not fill in the institute name field."
+    },
+    {
+        "name": "userInstituteWebsite",
+        "label": "Website of the Institute",
+        "type": "url",
+        "required": true,
+        "ruleType": "filter",
+        "rule": "url",
+        "message" : "Error, you incorrectly filled in the website of the institute field."
+    },
+    {
+        "name": "userORCID",
+        "label": "ORCID",
+        "type": "text",
+        "value": "0000-0000-0000-0000",
+        "required": false,
+        "subtitle": "Open Researcher and Contributor ID. If you do not have one, leave the field empty",
+        "ruleType": "regex",
+        "rule": "^$|^\\d{4}\\\\-\\\\d{4}\\\\-\\\\d{4}\\\\-\\\\d{4}$",
+        "message" : "Error, you incorrectly filled in the ORCID field."
+    },
+    {
+        "name": "egoMembership",
+        "label": "EGO Membership",
+        "type": "checkbox",
+        "required": false,
+        "subtitle": "Sign to receive emails, news, ... from EGO. You must sign to select your EGO GROUP"
+    },
+    {
+        "name": "userMotivation",
+        "label": "Motivation",
+        "type": "textarea",
+        "required": true,
+        "subtitle": "Please provide a motivation letter of at least 50 characters",
+        "ruleType": "length",
+        "rule": 50,
+        "message" : "Error, you did not fill in the motivation field or it is too short."
+    }
+]

@@ -1,0 +1,286 @@
+[
+    {
+        "name": "isGliderDisplayed",
+        "label": "Show the glider",
+        "type": "radio",
+        "required": true,
+        "group": null,
+        "json code": "null",
+        "options": [
+            { "label": "Yes", "value": "1" },
+            { "label": "No", "value": "0" }
+        ],
+        "labelAfter": "(if no, glider and its deployments hidden elsewhere except in this page)",
+        "title":"In rare cases, you might need to hide a glider or its deployments. If you hide a glider or its deployments, they will never appear in the web site except in the registration form where they are visible only by the members of your EGO group. Use the radio buttons for this (default is visible). If you hide a glider, all its deployments will be hidden too. This can be useful for tests."
+    },
+    {
+        "name": "isDeploymentDisplayed",
+        "label": "Show the deployment",
+        "type": "radio",
+        "required": true,
+        "group": null,
+        "json code": "null",
+        "options": [
+            { "label": "Yes", "value": "1", "checked":"yes" },
+            { "label": "No", "value": "0" }
+        ],
+        "labelAfter": "(if no, deployment hidden elsewhere except in this page)",
+        "title":"In rare cases, you might need to hide a glider or its deployments. If you hide a glider or its deployments, they will never appear in the web site except in the registration form where they are visible only by the members of your EGO group. Use the radio buttons for this (default is visible). If you hide a glider, all its deployments will be hidden too. This can be useful for tests."
+    },
+    {
+        "name": "gliderName",
+        "label": "Glider Name",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "platform_code",
+        "datalist": true,
+        "title": "EGO json code : platform_code\nDefinition : Glider’s nick name. The use of lower case is recommended.  This attribute is mandatory.  If you are not using nicknames for gliders, use the serial number instead.\nExample :  \"platform_code\"=\"pytheas\""
+    },
+    {
+        "name": "deploymentName",
+        "label": "Deployment Name",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "deployment_code",
+        "datalist": true,
+        "title": "EGO json code : deployment_code\nDefinition : Name of the deployment of mission. It is unique among EGO deployments. This code may be used as the local code in catalogues such as SeaDataNet Common Data Index (CDI). If your glider group is not using deployment code, use deployment start date (YYYYMMDD).\nExample :  \"deployment_code\"=\"Moose T00_19\" "
+    },
+    {
+        "name": "deploymentLabel",
+        "label": "Deployment Label",
+        "type": "text",
+        "required": false,
+        "group": "Global Attributes",
+        "json code": "deployment_label",
+        "title": "EGO json code : deployment_label\nDefinition : The deployment label, a free text to describe the deployment.\nExample :  “deployment_label”=“Moose T00_19 summer 2010 deployment” "
+    },
+    {
+        "name": "WMONumber",
+        "label": "WMO Number",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "wmo_platform_code",
+        "title": "EGO json code : wmo_platform_code\nDefinition : WMO (World Meteorological Organization) unique identifier. Any platform of the GOOS has its unique WMO ID. If your glider do not have a WMO ID please contact support@ocean-ops.org.\nExample :  \"wmo_platform_code\"=\"6100864\"\nATTENTION : In the absence of an existing WMO number, put 0 (zero). It will remain editable until an actual number is given by WMO."
+    },
+    {
+        "name": "dataAssemblyCenter",
+        "label": "Data Assembly Center",
+        "type": "select",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "data_assembly_center",
+        "options": [
+            { "label": "Select a data assembly center", "value": "" },
+            { "label": "Ifremer", "value": "Ifremer" },
+            { "label": "BODC", "value": "BODC" },
+            { "label": "NMDC", "value": "NMDC" },
+            { "label": "DFO", "value": "DFO" },
+            { "label": "OGS", "value": "OGS" },
+            { "label": "SOCIB", "value": "SOCIB" },
+            { "label": "IOOS", "value": "IOOS" },
+            { "label": "TTU", "value": "TTU" },
+            { "label": "IMOS", "value": "IMOS" }
+        ],
+        "title": "EGO json code : data_assembly_center\nDefinition : Data Assembly Centre (DAC) in charge of this data file. See reference table.\nExample :  \"data_assembly_center\"=\"IF\" "
+    },
+    {
+        "name": "summary",
+        "label": "Summary",
+        "type": "textarea",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "summary",
+        "title": "EGO json code : summary\nDefinition : A longer description of the data file. A paragraph of up to 100 words is appropriate. The display of the summary attribute together with the title one should allow data discovery for a human reader.\nExample :  “summary”=“Oceanographic glider data from Pytheas glider deployed in gulf of Lion, North-West Mediterranean Sea, in 2019. Measured properties: temperature, salinity, oxygen, turbidity.” "
+    },
+    {
+        "name": "principalInvestigator",
+        "label": "Principal Investigator",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "principal_investigator",
+        "datalist": true,
+        "title": "EGO json code : principal_investigator\nDefinition : Name of the principal investigator in charge of the deployment.\nExample :  “principal_investigator”=”Pierre Testor” "
+    },
+    {
+        "name": "principalInvestigatorEmail",
+        "label": "PI Email",
+        "type": "email",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "principal_investigator_email",
+        "title": "EGO json code : principal_investigator_email\nDefinition : Principal investigator’s email address.\nExample :  “principal_investigator_email”=“pierre.testor@locean-ipsl.upmc.fr” "
+    },
+    {
+        "name": "project",
+        "label": "Project",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "project_name",
+        "datalist": true,
+        "title": "EGO json code : project_name\nDefinition : Name of the project which operates the profiling glider that performed the profile.\nExample :  “project_name”=“MOOSE” "
+    },
+    {
+        "name": "observatory",
+        "label": "Observatory",
+        "type": "text",
+        "required": true,
+        "group": "Global Attributes",
+        "json code": "observatory",
+        "datalist": true,
+        "title": "EGO json code : observatory\nDefinition : Area or line regularly sampled. See reference table.\nExample :  “observatory”=“MooseT00” "
+    },
+    {
+        "name": "platformFamily",
+        "label": "Platform Family",
+        "type": "select",
+        "required": true,
+        "group": "Glider Characteristics",
+        "json code": "PLATFORM_FAMILY",
+        "options": [
+            { "label": "Select a platform type", "value": "" }
+        ],
+        "optionsJSON": true,
+        "title": "EGO json code : PLATFORM_FAMILY\nDefinition : Autonomous vehicle family\nExample :  “PLATFORM_FAMILY”=“Unmanned Underwater Vehicle” "
+    },
+    {
+        "name": "platformType",
+        "label": "Platform Type",
+        "type": "select",
+        "required": true,
+        "group": "Glider Characteristics",
+        "json code": "PLATFORM_TYPE",
+        "options": [
+                        { "label": "Select a platform type", "value": "" }
+                    ],
+        "optionsJSON": true,
+        "title": "EGO json code : PLATFORM_TYPE\nDefinition :  Type of autonomous vehicle. See reference table.\nExample :  “PLATFORM_TYPE”=“Seaglider” "
+    },
+    {
+        "name": "gliderSerialNumber",
+        "label": "Glider Serial nb",
+        "type": "text",
+        "required": true,
+        "group": "Glider Characteristics",
+        "json code": "PLATFORM_SERIAL_NO",
+        "title":"EGO json code : GLIDER_SERIAL_NO\nDefinition : Serial number of the glider.\nExample :  \"GLIDER_SERIAL_NO\"=\"Unit_196\"  "
+    },
+    {
+        "name": "owningInstitute",
+        "label": "Owning Institute",
+        "type": "text",
+        "required": true,
+        "group": "Glider Characteristics",
+        "json code": "GLIDER_OWNER",
+        "datalist": true,
+        "title": "EGO json code : GLIDER_OWNER\nDefinition : The owner of the glider (may be different from the data center and operating institution).\nExample :  \"GLIDER_OWNER\"=\"LOCEAN\" "
+    },
+    {
+        "name": "operatingInstitute",
+        "label": "Operating Institute",
+        "type": "text",
+        "required": true,
+        "group": "Glider Characteristics",
+        "json code": "OPERATING_INSTITUTION",
+        "datalist": true,
+        "title": "EGO json code : OPERATING_INSTITUTION\nDefinition : The operating institution of the glider (may be different from the glider owner and data center).\nExample :  \"OPERATING_INSTITUTION”=“DTINSU\""
+    },
+    {
+        "name": "deploymenOperator",
+        "label": "Deployment operator",
+        "type": "text",
+        "required": false,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_OPERATOR",
+        "title": "EGO json code : DEPLOYMENT_OPERATOR\nDefinition : Name of the person in charge of the glider deployment.\nExample :  \"Deployment Operator”=“Lou Tine\"  "
+    },
+    {
+        "name": "statusOfDeployment",
+        "label": "Status of the deployment",
+        "type": "select",
+        "required": false,
+        "group": "Glider Deployment",
+        "json code": "none",
+        "options": [
+            {
+                "label": "Select a status",
+                "value": ""
+            },
+            {
+                "label": "PLANNED",
+                "value": "PLANNED"
+            },
+            {
+                "label": "ACTIVE",
+                "value": "ACTIVE"
+            },
+            {
+                "label": "CLOSED",
+                "value": "CLOSED"
+            },
+            {
+                "label": "CANCELLED",
+                "value": "CANCELLED"
+            }
+        ],
+        "title": "For EGO monitoring, it is useful to have the status as declared by the operator. If left empty, the status will be determined according to the (planned)Start and (planned)End Date.\nPLANNED: The deployment is planned. Provide the planned start/end dates. The actual start and end dates can be adjusted later.\nACTIVE: The deployment is active. Provide the start date (i.e. when the platform has started to emit).\nCLOSED: The deployment is completed.\nCancelled: A planned deployment which was cancelled."
+    },
+    {
+        "name": "startDate",
+        "label": "(planned) Start Date",
+        "type": "datetime-local",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_START_DATE",
+        "title": "EGO json code : DEPLOYMENT_START_DATE\nDefinition : Date and time (UTC) of deployment of the glider.  Format: YYYYMMDDHHMISS\nExample :  “DEPLOYMENT_START_DATE”=“20011230090500” (for December 30th 2001 09:05:00)\nCOMMENT : If the deployment is only planned, provide the planned start date. When the deployment will start, update."
+    },
+    {
+        "name": "startLatitude",
+        "label": "(planned) Start Latitude",
+        "type": "text",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_START_LATITUDE",
+        "title":"EGO json code : DEPLOYMENT_START_LATITUDE\nDefinition : Latitude of the deployment. Unit: decimal degree north. no quotation marks\nExample :  “DEPLOYMENT_START_LATITUDE”=44.4991 (for 44° 29’ 56.76’’ N) \nCOMMENT : (planned) Start latitude can be approximate. This metadata is used to identify observatories and produce deployment location maps (if no data is shared)."
+    },
+    {
+        "name": "startLongitude",
+        "label": "(planned) Start Longitude",
+        "type": "text",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_START_LONGITUDE",
+        "title": "EGO json code : DEPLOYMENT_START_LONGITUDE\nDefinition : Longitude of the deployment. Unit: decimal degree east. no quotation marks\nExample :  “DEPLOYMENT_START_LONGITUDE”=16.7222 (for 16° 43’ 19.92’’ E)\nCOMMENT : (planned) Start longitude can be approximate. This metadata is used toidentify observatories and produce deployment location maps (if no datais shared)."
+    },
+    {
+        "name": "endDate",
+        "label": "(planned) End Date",
+        "type": "datetime-local",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_END_DATE",
+        "title":"EGO json code : DEPLOYMENT_END_DATE\nDefinition : Date (UTC) of the end of deployment of the glider.\nExample :  “DEPLOYMENT_END_DATE”=“20011230090500” (for December 30th 2001 09:05:00)\nCOMMENT : If the deployment is only planned or operational, provide the planned end date. When the deployment will end, update. This metadata is essential to track the life cycle of the deployment."
+    },
+    {
+        "name": "endLatitude",
+        "label": "(planned) End Latitude",
+        "type": "text",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_END_LATITUDE",
+        "title":"EGO json code : DEPLOYMENT_END_LATITUDE\nDefinition : Latitude of the recovery of the glider. Unit: decimal degree north. no quotation marks\nExample :  “DEPLOYMENT_END_LATITUDE”=44.4991 (for 44° 29’ 56.76’’ N) "
+    },
+    {
+        "name": "endLongitude",
+        "label": "(planned) End Longitude",
+        "type": "text",
+        "required": true,
+        "group": "Glider Deployment",
+        "json code": "DEPLOYMENT_END_LONGITUDE",
+        "title":"EGO json code : DEPLOYMENT_END_LONGITUDE\nDefinition : Longitude of the recovery of the glider. Unit: degree east. ”” if empty. If a value is present, there should be no quotation marks\nExample :  “DEPLOYMENT_END_LONGITUDE”=16.7222 (for 16° 43’ 19.92’’ E) "
+    }
+]

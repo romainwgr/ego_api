@@ -1,0 +1,243 @@
+{
+    "families": {
+        "uuv": "Unmanned Underwater Vehicle",
+        "usv": "Unmanned Surface Vehicle"
+    },
+    "family": {
+        "usv": {
+            "id": 123,
+            "description": "Unmanned Surface Vehicle",
+            "nameShort": "USV",
+            "name": "Unmanned Surface Vehicle",
+            "type": {
+                "saildrone": {
+                    "name": "Saildrone",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SD",
+                    "acronyme": "sd",
+                    "id": 123,
+                    "description": "",
+                    "nameShort": "",
+                    "wigosCode": "",
+                    "manufacturer": "Saildrone",
+                    "ego_acronyme": "saildrone",
+                    "ego_short": "SD",
+                    "ego_manage": "sd"
+                },
+                "waveglider": {
+                    "name": "Wave Glider",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "WG",
+                    "acronyme": "wg",
+                    "manufacturer": "Liquid Robotic",
+                    "ego_acronyme": "waveglider",
+                    "ego_short": "WG",
+                    "ego_manage": "wg"
+                }
+            }
+        },
+        "uuv": {
+            "nameShort": "UUV",
+            "name": "Unmanned Underwater Vehicle",
+            "type": {
+                "Slocum": {
+                    "name": "Generic SLOCUM",
+                    "acronyme": "sl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "slocum",
+                    "manufacturer": "Webb Research Corporation",
+                    "ego_manage": "sl",
+                    "ego_short": "SL",
+                    "ego_acronyme": "Slocum",
+                    "plot_manage": "slocum"
+                },
+                "slocum": {
+                    "name": "Generic SLOCUM",
+                    "acronyme": "sl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "slocum",
+                    "manufacturer": "Webb Research Corporation",
+                    "ego_manage": "sl",
+                    "ego_short": "SL",
+                    "ego_acronyme": "Slocum",
+                    "plot_manage": "slocum"
+                },
+                "slocum_thermal": {
+                    "name": "Thermal deep SLOCUM",
+                    "acronyme": "tsl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "Slocum thermal",
+                    "manufacturer": "Webb Research Corporation",
+                    "ego_manage": "tsl",
+                    "ego_short": "tSL",
+                    "ego_acronyme": "slocum_thermal",
+                    "plot_manage": "slocum"
+                },
+                "slocum_deep": {
+                    "name": "Generic deep SLOCUM",
+                    "acronyme": "dsl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "slocum",
+                    "manufacturer": "Webb Research Corporation",
+                    "ego_manage": "sl",
+                    "ego_short": "dSL",
+                    "ego_acronyme": "slocum_deep",
+                    "plot_manage": "slocum"
+                },
+                "slocum_shallow": {
+                    "name": "Generic coastal SLOCUM",
+                    "acronyme": "sl",
+                    "og_type": "COASTAL_GLIDER",
+                    "og_model": "slocum",
+                    "manufacturer": "Webb Research Corporation",
+                    "ego_manage": "sl",
+                    "ego_short": "cSL",
+                    "ego_acronyme": "slocum_shallow",
+                    "plot_manage": "slocum"
+                },
+                "sg1": {
+                    "name": "SLOCUM G1",
+                    "acronyme": "sl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SG1",
+                    "manufacturer": "Teledyne Webb Research",
+                    "ego_manage": "sl",
+                    "ego_short": "G1",
+                    "ego_acronyme": "sl1",
+                    "plot_manage": "slocum"
+                },
+                "sg2": {
+                    "name": "SLOCUM G2",
+                    "alt_name": [
+                        "SLOCUM_SG2",
+                        "Slocum_g2",
+                        "Slocum G2 Deep"
+                    ],
+                    "acronyme": "sl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SG2",
+                    "manufacturer": "Teledyne Webb Research",
+                    "ego_manage": "sl",
+                    "ego_short": "G2",
+                    "ego_acronyme": "sl2",
+                    "plot_manage": "slocum"
+                },
+                "sg3": {
+                    "name": "SLOCUM G3",
+                    "alt_name": [
+                        "SLOCUM_SG3",
+                        "Slocum G3 Deep"
+                    ],
+                    "acronyme": "sl",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SG3",
+                    "manufacturer": "Teledyne Webb Research",
+                    "ego_manage": "sl",
+                    "ego_short": "G3",
+                    "ego_acronyme": "sl3",
+                    "plot_manage": "slocum"
+                },
+                "seaglider": {
+                    "name": "SEAGLIDER M1",
+                    "acronyme": "sg",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "seaglider",
+                    "manufacturer": "Kongsberg || iRobot || Seaglider Fabrication Center",
+                    "ego_manage": "sg",
+                    "ego_short": "SG",
+                    "ego_acronyme": "seaglider",
+                    "plot_manage": "seaglider"
+                },
+                "dsg": {
+                    "name": "DEEPGLIDER",
+                    "acronyme": "dsg",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "deepglider",
+                    "manufacturer": "UW\/APL",
+                    "ego_manage": "sg",
+                    "ego_short": "DG",
+                    "ego_acronyme": "dsg",
+                    "plot_manage": "seaglider"
+                },
+                "sgx": {
+                    "name": "SEAGLIDER SGX",
+                    "acronyme": "sg",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SGX",
+                    "manufacturer": "UW\/APL",
+                    "ego_manage": "sg",
+                    "ego_short": "SGX",
+                    "ego_acronyme": "sgx",
+                    "plot_manage": "seaglider"
+                },
+                "spray": {
+                    "name": "SPRAY",
+                    "acronyme": "sp",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "spray",
+                    "manufacturer": "Bluefin Robotics",
+                    "ego_manage": "sp",
+                    "ego_short": "SP",
+                    "ego_acronyme": "spray",
+                    "plot_manage": "spray"
+                },
+                "sp2": {
+                    "name": "SPRAY2",
+                    "acronyme": "sp2",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "spray",
+                    "manufacturer": "MRV Marine Robotic Vehicles",
+                    "url": "https:\/\/www.mrvsys.com\/products\/spray2",
+                    "ego_manage": "sp",
+                    "ego_short": "SP2",
+                    "ego_acronyme": "spray",
+                    "plot_manage": "spray"
+                },
+                "seaexplorer": {
+                    "name": "SEAEXPLORER",
+                    "acronyme": "se",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "SeaExplorer",
+                    "manufacturer": "Alseamar",
+                    "ego_manage": "se",
+                    "ego_short": "SE",
+                    "ego_acronyme": "seaexplorer",
+                    "plot_manage": "seaexplorer"
+                },
+                "seaexplorer_shallow": {
+                    "name": "SEAEXPLORER SHALLOW",
+                    "acronyme": "se",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "Seaexplorer Shallow",
+                    "manufacturer": "Alseamar",
+                    "ego_manage": "se",
+                    "ego_short": "SE",
+                    "ego_acronyme": "seaexplorer_shallow",
+                    "plot_manage": "seaexplorer"
+                },
+                "oceanscout": {
+                    "name": "Oceanscout",
+                    "acronyme": "no",
+                    "og_type": "OPEN_OCEAN_GLIDER",
+                    "og_model": "Oceanscout",
+                    "manufacturer": "Hefring",
+                    "ego_short": "os",
+                    "ego_manage": "OS",
+                    "ego_acronyme": "oceanscout",
+                    "plot_manage": "oceanscout"
+                },
+                "other": {
+                    "name": "Other",
+                    "acronyme": "no",
+                    "og_type": "UNKNOWN",
+                    "og_model": "UNKNOWN",
+                    "manufacturer": "UNKNONW",
+                    "ego_short": "UNK",
+                    "ego_manage": "no",
+                    "ego_acronyme": "other",
+                    "plot_manage": "other"
+                }
+            }
+        }
+    }
+}

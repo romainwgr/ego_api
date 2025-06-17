@@ -1,0 +1,18 @@
+{
+  "ACOUSTIC_SENSOR": [
+    { "name": "ACOUSTIC SENSOR", "value": "ACOUSTIC_SENSOR" },
+    { "name": "ACOUSTIC SENSOR 2", "value": "ACOUSTIC_SENSOR_2", "definition" : "exempleLien.com" }
+  ],
+  "CTD": [
+    { "name": "CTD", "value": "CTD" },
+    { "name": "CTD 2", "value": "CTD_2" }
+  ],
+  "BACKSCATTER_AND_FLUOROMETER_SENSOR": [
+    { "name": "BACKSCATTER AND FLUOROMETER SENSOR", "value": "BACKSCATTER_AND_FLUOROMETER_SENSOR" },
+    { "name": "BACKSCATTER AND FLUOROMETER SENSOR 2", "value": "BACKSCATTER_AND_FLUOROMETER_SENSOR_2" }
+  ],
+  "CURRENT_METER": [
+    { "name": "CURRENT METER", "value": "CURRENT_METER" },
+    { "name": "CURRENT METER 2", "value": "CURRENT_METER_2" }
+  ]
+}

@@ -2,57 +2,55 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPasswordContract
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, CanResetPassword;
 
-        /**
+    /**
      * Le nom de la table associée à ce modèle.
      *
      * @var string
      */
     protected $table = 'users_2025';
+
     /**
-     * The attributes that are mass assignable.
+     * Les attributs assignables en masse.
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'password_algo',
-        'google_id'
-
+        'google_id',
+        'status',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Les attributs à cacher lors de la sérialisation.
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected $hidden = [
         'password',
         'remember_token',
-        'password_algo', 
-
+        'password_algo',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Les casts d’attributs.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

@@ -16,28 +16,22 @@
 
 return [
 
-        'paths' => ['api/*', 'sanctum/csrf-cookie'],
-    
-        // Méthodes que tu acceptes (POST + GET suffisent le plus souvent)
-        'allowed_methods' => ['POST', 'GET', 'OPTIONS'],
-    
-        // 👉  Autorise UNIQUEMENT le front local
-        'allowed_origins' => ['http://localhost'],
-    
-        // Garder vide : on utilise la liste ci‑dessus, pas les patterns
-        'allowed_origins_patterns' => [],
-    
-        // Tous les headers client OK
-        'allowed_headers' => ['*'],
-    
-        // Rien d’exposé en plus
-        'exposed_headers' => [],
-    
-        'max_age' => 0,
-    
-        // 👉  Indispensable pour que le cookie soit envoyé
-        'supports_credentials' => true,
-    ];
+    'paths' => ['*'], // ou ['login', 'choose-account', 'auth/google/*']
+
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => ['http://localhost:8090'], // <--- ADAPTE À TON PORT FRONT
+
+    'allowed_headers' => ['*'],
+
+    'supports_credentials' => true,
+
+    'allowed_origins_patterns' => [],
+
+    'exposed_headers' => [],
+    'max_age' => 0,
+];
+
     
     
 

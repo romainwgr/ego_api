@@ -20,7 +20,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:8090'], // <--- ADAPTE À TON PORT FRONT
+    'allowed_origins' => ['*'], // <--- ADAPTE À TON PORT FRONT
 
     'allowed_headers' => ['*'],
 

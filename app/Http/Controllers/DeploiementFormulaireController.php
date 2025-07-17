@@ -26,7 +26,8 @@ class DeploiementFormulaireController extends Controller
         $groupes = EgoGroup::select('group_id', 'group_name')->get();
         $observatories = EgoObservatory::select('item_id', 'name')->get();
         $deployments = EgoDeploiement::select('deployment_id', 'name', 'glider_id', 'start_date', 'end_date', 'planned_start_date', 'planned_end_date')->get();
-        return view('dynamic-form-deploiement', compact('champs', 'sensors', 'gliders', 'vehicle', 'user', 'groupes', 'observatories', 'deployments'));
+        $gliders = EgoGlider::select('glider_id', 'name', 'family', 'WMO_platform_code', 'no_serie', 'owner_id', 'type')->get();
+        return view('dynamic-form-deploiement', compact('champs', 'sensors', 'gliders', 'vehicle', 'user', 'groupes', 'observatories', 'deployments', 'gliders'));
     }
     public function traiterFormulaire(Request $request)
     {
@@ -72,12 +73,26 @@ class DeploiementFormulaireController extends Controller
         ->header('Content-Type', 'application/json')
         ->header('Content-Disposition', 'attachment; filename="utilisateur.json"');
     }
-    public function editJSON(Request $request, $id)
+    public function popupCapteur($modelId)
     {
-        // Editer le JSON
-    }
-    public function traiterJSON(Request $request, $id)
-    {
-        // Traiter le JSON
+        $json = file_get_contents(resource_path('export_sensor_model_gliders_v6.json'));
+        $data = json_decode($json, true);
+
+        $model = null;
+
+        
+        foreach ($data as $family) {
+            if (isset($family['SENSOR_MODEL_NAMES'][$modelId])) {
+                $model = $family['SENSOR_MODEL_NAMES'][$modelId];
+                break;
+            }
+        }
+
+        if (!$model) {
+            abort(404, "Modèle de capteur non trouvé.");
+        }
+
+
+        return view('popup-sensor', ['model' => $model]);
     }
 }

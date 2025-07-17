@@ -9,15 +9,21 @@ use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use App\Services\JwtService;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use App\Models\RefreshToken; 
+use Carbon\Carbon;
 
 
 class OidcController extends Controller
 {
     private $jwtSecret;
+    private JwtService $jwtService;
 
-    public function __construct()
+    public function __construct(JwtService $jwtService) 
     {
         $this->jwtSecret = env('JWT_SECRET');
+        $this->jwtService = $jwtService; 
     }
     public function redirectToGoogle()
     {
@@ -34,7 +40,7 @@ class OidcController extends Controller
         }
     }
 
-    public function callbackToGoogle(JwtService $jwtService)
+    public function callbackToGoogle(Request $request)
 {
 
     try {

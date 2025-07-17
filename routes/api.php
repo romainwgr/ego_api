@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\ZoteroController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,79 +55,142 @@ Route::middleware('auth.admin')->group(function () {
         ]);
     });
 });
+// Zotero
+Route::get('/zotero', [\App\Http\Controllers\ZoteroController::class, 'index'])->name('zotero.index');
 
 
+// Old Damien
 
+// // Damien 
 
-// Damien 
+// // Route::get('/formulaire', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtml'])->name('formulaire');
+// /*Route::post('/formulaire', [RegisterFormulaireController::class, 'formulaire'])
+//     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);*/
 
-// Route::get('/formulaire', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtml'])->name('formulaire');
-/*Route::post('/formulaire', [RegisterFormulaireController::class, 'formulaire'])
-    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);*/
+// Route::get('/ajouter-user', function () {
+//     \App\Models\EgoUserTest::create([
+//         'username' => 'Toto',
+//         'userInstitute' => 'Institut de test',
+//         'userInstituteWebsite' => 'http://example.com',
+//         'userORCID' => '0000-0002-1234-5678',
+//         'userLastName' => 'Toto',
+//         'userFirstName' => 'Test',
+//         'userMail' => 'toto@example.com',
+//         'userPassword' => "yoplait17@Web",
+//         'userMotivation' => 'Je suis un utilisateur de test.',
+//         'is_validated' => 0,
+//         'professionalEmail' => 'maildetest@test.fr'
+//     ]);
 
-Route::get('/ajouter-user', function () {
-    \App\Models\EgoUserTest::create([
-        'username' => 'Toto',
-        'userInstitute' => 'Institut de test',
-        'userInstituteWebsite' => 'http://example.com',
-        'userORCID' => '0000-0002-1234-5678',
-        'userLastName' => 'Toto',
-        'userFirstName' => 'Test',
-        'userMail' => 'toto@example.com',
-        'userPassword' => "yoplait17@Web",
-        'userMotivation' => 'Je suis un utilisateur de test.',
-        'is_validated' => 0,
-        'professionalEmail' => 'maildetest@test.fr'
-    ]);
+//     return 'Utilisateur ajouté !';
+// });
 
-    return 'Utilisateur ajouté !';
-});
-
-/*Route::post('/register', function (Request $request) {
+// /*Route::post('/register', function (Request $request) {
     
 
-    $user = \App\Models\User::create([
-        'userName' => $request->userName,
-        'userFirstName' => $request->userFirstName,
-        'userMail' => $request->userMail,
-        'userPassword' => Hash::make($request->userPassword),
-    ]);
-    header("Location: http://localhost/wordpress/32-2/");
-    return response()->json(['success' => true, 'user' => $user]);
-});*/
+//     $user = \App\Models\User::create([
+//         'userName' => $request->userName,
+//         'userFirstName' => $request->userFirstName,
+//         'userMail' => $request->userMail,
+//         'userPassword' => Hash::make($request->userPassword),
+//     ]);
+//     header("Location: http://localhost/wordpress/32-2/");
+//     return response()->json(['success' => true, 'user' => $user]);
+// });*/
 
-Route::post('/register', [\App\Http\Controllers\RegisterFormulaireController::class, 'traiterFormulaire']);
+// Route::post('/register', [\App\Http\Controllers\RegisterFormulaireController::class, 'traiterFormulaire']);
 
-Route::get('/ego-members', function () {
-    $members = \App\Models\EgoMember::select(
-        'attached_icon',
-        'name',
-        'name_detail',
-        'resp_phpbbid',
-        'address',
-        'locator',
-        'edmoRecordId',
-        'country'
-    )
-    ->where('is_displayed', 1)
-    ->orderBy('name')
-    ->get();
+// Route::get('/ego-members', function () {
+//     $members = \App\Models\EgoMember::select(
+//         'attached_icon',
+//         'name',
+//         'name_detail',
+//         'resp_phpbbid',
+//         'address',
+//         'locator',
+//         'edmoRecordId',
+//         'country'
+//     )
+//     ->where('is_displayed', 1)
+//     ->orderBy('name')
+//     ->get();
 
-    return response()->json($members);
-});
+//     return response()->json($members);
+// });
 
-Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
+// Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
 
-Route::get('/generer-json', [\App\Http\Controllers\DeploiementFormulaireController::class, 'genererJSON']);
+// Route::get('/generer-json', [\App\Http\Controllers\DeploiementFormulaireController::class, 'genererJSON']);
 
-Route::post('/inscription', [\App\Http\Controllers\RegisterFormulaireController::class, 'traiterFormulaireAjax']);
+// Route::post('/inscription', [\App\Http\Controllers\RegisterFormulaireController::class, 'traiterFormulaireAjax']);
 
-/*Route::get('/embed/form', function () {
-    return view('livewire.filament.forms.user-registration-form'); // resources/views/public-form.blade.php
-});*/
+// /*Route::get('/embed/form', function () {
+//     return view('livewire.filament.forms.user-registration-form'); // resources/views/public-form.blade.php
+// });*/
 
-Route::get('/embed/form', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
-Route::get('/embed/form/old', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtmlV2']);
-Route::get('/groups/search', [\App\Http\Controllers\EgoGroupController::class, 'search']);
+// Route::get('/embed/form', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+// Route::get('/embed/form/old', [\App\Http\Controllers\RegisterFormulaireController::class, 'genererFormulaireHtmlV2']);
+// Route::get('/groups/search', [\App\Http\Controllers\EgoGroupController::class, 'search']);
 
-Route::get('/embed/form/deploiement', [\App\Http\Controllers\DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+// Route::get('/embed/form/deploiement', [\App\Http\Controllers\DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+
+
+// New Damien
+
+
+
+
+
+use App\Models\EgoGlider;
+use App\Http\Controllers\RegisterFormulaireController;
+use App\Http\Controllers\DeploiementFormulaireController;
+use App\Http\Controllers\EgoMemberTableauController; 
+
+
+
+// Route::get('/ego-members', function () {
+//     $members = \App\Models\EgoMember::select(
+//         'attached_icon',
+//         'name',
+//         'name_detail',
+//         'resp_phpbbid',
+//         'address',
+//         'locator',
+//         'edmoRecordId',
+//         'country'
+//     )
+//     ->where('is_displayed', 1)
+//     ->orderBy('name')
+//     ->get();
+
+//     return response()->json($members);
+// });
+
+Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);*/
+
+Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormulaireAjax']);
+
+Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+
+Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+
+Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class, 'popupCapteur']);
+
+// Antoine 
+
+
+use App\Http\Controllers\GlobalRegionController;
+use App\Http\Controllers\GlobalRegionTableController;
+// use App\Http\Controllers\ZoteroController; j'utilise mon zotero
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ApiIndexController;
+
+
+Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+
+
+Route::get('/globalregions', [GlobalRegionController::class, 'index'])->name('globalregions.index');
+Route::get('/globalregiontable', [GlobalRegionTableController::class, 'index'])->name('globalregiontable.index');
+// Route::get('/zotero-items', [ZoteroController::class, 'index'])->name('zotero-items.index'); i use my zotero
+Route::get('/', [ApiIndexController::class, 'index']);
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');

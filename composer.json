@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "johnbillion/query-monitor": "^3.18",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.41",
@@ -70,6 +71,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
+            "composer/installers": true,
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }

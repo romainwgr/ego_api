@@ -17,5 +17,6 @@ Class EgoDeploiement extends Model{
         'end_date',
         'planned_start_date',
         'planned_end_date',
+        'sensor_list'
     ];
 }

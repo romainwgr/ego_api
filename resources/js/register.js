@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const groupes = JSON.parse(document.getElementById('groupes-data').textContent);
 
     const fuse = new Fuse(groupes, {
-        keys: ['group_name'],
+        // keys: ['group_name'],
+        keys: ['name'], // Utiliser 'name' pour EgoMember
         threshold: 0.3,
     });
 
@@ -38,9 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hidden.value = ''; // ← Toujours réinitialiser d'abord
 
         // Rechercher un match exact
-        const exactMatch = groupes.find(g => g.group_name.toLowerCase() === value.toLowerCase());
+        // const exactMatch = groupes.find(g => g.group_name.toLowerCase() === value.toLowerCase())
+        const exactMatch = groupes.find(g => g.name.toLowerCase() === value.toLowerCase()); // Utiliser 'name' pour EgoMember
         if (exactMatch) {
-            hidden.value = exactMatch.group_id;
+            // hidden.value = exactMatch.group_id;
+            hidden.value = exactMatch.item_id; // Utiliser item_id pour EgoMember
+
             return;
         }
 
@@ -55,11 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         results.slice(0, 5).forEach(result => {
             const item = document.createElement('li');
-            item.textContent = result.item.group_name;
-            item.dataset.id = result.item.group_id;
+            // item.textContent = result.item.group_name;
+            item.textContent = result.item.name; // Utiliser 'name' pour EgoMember
+            // item.dataset.id = result.item.group_id;
+            item.dataset.id = result.item.item_id; // Utiliser item_id pour EgoMember
             item.addEventListener('click', () => {
-                input.value = result.item.group_name;
-                hidden.value = result.item.group_id;
+                // input.value = result.item.group_name;
+                input.value = result.item.name; // Utiliser 'name' pour EgoMember
+                // hidden.value = result.item.group_id;
+                hidden.value = result.item.item_id; // Utiliser item_id pour EgoMember
                 suggestionsList.innerHTML = '';
                 suggestionsList.style.display = 'none';
             });

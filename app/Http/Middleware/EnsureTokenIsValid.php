@@ -31,7 +31,7 @@ class EnsureTokenIsValid
             // Ajout de l'utilisateur dans la requête
             $user = User::find($decoded->sub);
 
-            if (!$user || $user->role !== 'user') {
+            if (!$user || !in_array($user->role, ['user', 'admin'])) {
                 return response()->json(['error' => 'Unauthorized or inactive user'], 403);
             }
 

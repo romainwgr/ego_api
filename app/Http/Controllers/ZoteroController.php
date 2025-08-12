@@ -19,8 +19,8 @@ class ZoteroController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = ZoteroItem::orderBy('date', 'desc');
-
+            $query = ZoteroItem::orderBy('date', 'desc')->where('itemType', '!=', 'note');
+            
             $items = $query->get();
 
             $formattedItems = $items->map(function ($item) {
@@ -45,7 +45,7 @@ class ZoteroController extends Controller
                     }
                 }
 
-                $displayDate = 'Date inconnue';
+                $displayDate = 'Unknown Date';
 
                 if (!empty($item->date_original)) {
                     $displayDate = $item->date_original;

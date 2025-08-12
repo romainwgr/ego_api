@@ -12,25 +12,7 @@
         "type": "email",
         "required": true
     },
-    {
-        "name": "userMailConfirm",
-        "label": "Confirm Email",
-        "type": "email",
-        "required": true
-    },
-    {
-        "name": "userPassword",
-        "label": "Password",
-        "type": "password",
-        "required": true,
-        "subtitle": "Password must be between 6 and 30 characters, and must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-    },
-    {
-        "name": "userPasswordConfirm",
-        "label": "Confirm Password",
-        "type": "password",
-        "required": true
-    },
+    
     {
         "name": "userLastName",
         "label": "Last Name",
@@ -72,7 +54,7 @@
         "subtitle": "Open Researcher and Contributor ID"
     },
     {
-        "name": "egoMembership",
+        "name": "ego_membership",
         "label": "EGO Membership",
         "type": "checkbox",
         "required": false,

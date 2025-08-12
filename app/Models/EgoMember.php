@@ -11,6 +11,7 @@ Class EgoMember extends Model{
     public $timestamps = false;
 
     protected $fillable = [
+        'item_id',
         'attached_icon',
         'name',
         'name_detail',

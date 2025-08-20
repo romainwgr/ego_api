@@ -92,6 +92,8 @@ Route::middleware('auth.admin')->group(function () {
     
 // Zotero
 Route::get('/zotero', [\App\Http\Controllers\ZoteroController::class, 'index'])->name('zotero.index');
+Route::get('/publications-per-year', [\App\Http\Controllers\ZoteroController::class, 'perYear']);
+Route::get('/zotero-total', [\App\Http\Controllers\ZoteroController::class, 'count']);
 
 // My account
 Route::get('/my-account', [\App\Http\Controllers\MyAccountController::class, 'index'])->name('my-account.index');

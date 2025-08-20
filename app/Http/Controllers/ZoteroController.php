@@ -72,4 +72,40 @@ class ZoteroController extends Controller
             return response()->json(['error' => 'Impossible de récupérer les données Zotero.'], 500);
         }
     }
+
+
+
+    // public function perYear()
+    // {
+    //     $data = ZoteroItem::select(
+    //             DB::raw('date as year'),
+    //             DB::raw('COUNT(*) as count')
+    //         )
+    //         ->whereNotNull('date')
+    //         ->groupBy('year')
+    //         ->orderBy('year', 'asc')
+    //         ->get();
+
+    //     return response()->json($data);
+    // }
+
+public function perYear()
+{
+    $data = ZoteroItem::select('date as year')
+        ->selectRaw('COUNT(*) as count')
+        ->whereNotNull('date')
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get();
+
+    return response()->json($data);
+}
+
+
+
+    public function count()
+    {
+        $count = ZoteroItem::count();
+        return response()->json(['total' => $count]);
+    }
 }

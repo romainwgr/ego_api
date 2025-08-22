@@ -166,7 +166,7 @@ use App\Http\Controllers\EgoMemberTableauController;
 //     return response()->json($members);
 // });
 
-Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);*/
+Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
 
 Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormulaireAjax']);
 

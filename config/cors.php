@@ -16,11 +16,15 @@
 
 return [
 
-    'paths' => ['*'], // ou ['login', 'choose-account', 'auth/google/*']
+    'paths' => [ 
+    	'auth/google/*',
+    	'password/reset/*',
+    	'api/*', 
+],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'], // <--- ADAPTE À TON PORT FRONT
+    'allowed_origins' => [env('APP_FRONTEND_URL')], 
 
     'allowed_headers' => ['*'],
 

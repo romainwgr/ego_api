@@ -10,4 +10,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command(SyncZoteroItems::class)->everyMinute();
+Schedule::command(SyncZoteroItems::class)->daily();

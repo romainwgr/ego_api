@@ -107,14 +107,15 @@ class LoginController extends Controller
         'revoked' => false,
     ]);
 
-    // 5. Renvoyer le refresh token en cookie HttpOnly ou dans la réponse
+    $isSecure = env('APP_ENV') === 'production';
+
     $cookieRefresh = cookie(
         'refresh_token',
         $refreshTokenPlain,
         60 * 24 * 7, // 7 jours
         '/',
-        'localhost',
-        false,
+        env('COOKIE_DOMAIN'),
+        $isSecure,
         true,
         false,
         'Lax'
@@ -125,8 +126,8 @@ class LoginController extends Controller
         $jwt,
         60,                // durée en minutes
         '/',               // path
-        'localhost', // domaine (cross-subdomain)
-        false,              // secure (HTTPS)
+        env('COOKIE_DOMAIN'), // domaine (cross-subdomain)
+        $isSecure,              // secure (HTTPS)
         true,              // httpOnly
         false,             // raw
         'Lax'              // SameSite

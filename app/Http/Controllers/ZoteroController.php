@@ -19,8 +19,8 @@ class ZoteroController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = ZoteroItem::orderBy('date', 'desc');
-
+            $query = ZoteroItem::orderBy('date', 'desc')->where('itemType', '!=', 'note');
+            
             $items = $query->get();
 
             $formattedItems = $items->map(function ($item) {
@@ -45,7 +45,7 @@ class ZoteroController extends Controller
                     }
                 }
 
-                $displayDate = 'Date inconnue';
+                $displayDate = 'Unknown Date';
 
                 if (!empty($item->date_original)) {
                     $displayDate = $item->date_original;
@@ -71,5 +71,41 @@ class ZoteroController extends Controller
             Log::error('Erreur lors de la récupération des éléments Zotero pour l\'API : ' . $e->getMessage());
             return response()->json(['error' => 'Impossible de récupérer les données Zotero.'], 500);
         }
+    }
+
+
+
+    // public function perYear()
+    // {
+    //     $data = ZoteroItem::select(
+    //             DB::raw('date as year'),
+    //             DB::raw('COUNT(*) as count')
+    //         )
+    //         ->whereNotNull('date')
+    //         ->groupBy('year')
+    //         ->orderBy('year', 'asc')
+    //         ->get();
+
+    //     return response()->json($data);
+    // }
+
+public function perYear()
+{
+    $data = ZoteroItem::select('date as year')
+        ->selectRaw('COUNT(*) as count')
+        ->whereNotNull('date')
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get();
+
+    return response()->json($data);
+}
+
+
+
+    public function count()
+    {
+        $count = ZoteroItem::count();
+        return response()->json(['total' => $count]);
     }
 }

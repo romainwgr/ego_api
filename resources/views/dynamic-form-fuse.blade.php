@@ -95,23 +95,35 @@
         <!-- boucle en blade -->
 
         @foreach ($champs as $champ) 
-            <section>
-                <div class="field-label-group">
-                    <label for="{{ $champ['name'] }}">
-                        {{ $champ['label'] }}
-                        @if (!empty($champ['required']) && $champ['required'])
-                            <span class="required-asterisk">*</span>
-                        @endif
-                    </label>
-                    @if (!empty($champ['subtitle']))
-                        <div class="field-subtitle">{{ $champ['subtitle'] }}</div>
-                    @endif
-                </div>
-                @if ($champ['type'] === 'textarea')
-                    <textarea name="{{ $champ['name'] }}" id="{{ $champ['name'] }}" @if (!empty($champ['required']) && $champ['required']) required @endif></textarea>
-                @elseif ($champ['type'] === 'checkbox')
-                    <input type="checkbox" name="{{ $champ['name'] }}" id="{{ $champ['name'] }}" value="1">
-                @else
+    <section>
+        <div class="field-label-group">
+            <label for="{{ $champ['name'] }}">
+                {{ $champ['label'] }}
+                @if (!empty($champ['required']) && $champ['required'])
+                    <span class="required-asterisk">*</span>
+                @endif
+            </label>
+            @if (!empty($champ['subtitle']))
+                <div class="field-subtitle">{{ $champ['subtitle'] }}</div>
+            @endif
+        </div>
+
+        @if ($champ['type'] === 'textarea')
+            <textarea 
+                name="{{ $champ['name'] }}" 
+                id="{{ $champ['name'] }}" 
+                @if (!empty($champ['required']) && $champ['required']) required @endif
+            ></textarea>
+
+        @elseif ($champ['type'] === 'checkbox')
+            <input 
+                type="checkbox" 
+                name="{{ $champ['name'] }}" 
+                id="{{ $champ['name'] }}" 
+                value="1"
+            >
+
+        @else
             @if ($champ['name'] === 'userInstitute')
                 <div class="autocomplete-wrapper">
                     <input 
@@ -130,6 +142,7 @@
                 <script id="groupes-data" type="application/json">
                     {!! json_encode($groupes) !!}
                 </script>
+
             @else
                 <input 
                     type="{{ $champ['type'] }}" 
@@ -137,14 +150,16 @@
                     id="{{ $champ['name'] }}" 
                     value="{{ $champ['value'] ?? '' }}" 
                     @if (!empty($champ['required']) && $champ['required']) required @endif
+                    @if ($champ['name'] === 'userMail') readonly @endif
                 >
             @endif
         @endif
-            </section>
-        @endforeach
+    </section>
+@endforeach
+
 
         <section>
-            <button type="submit" class="submit-button">Envoyer</button>
+            <button type="submit" class="submit-button">Send</button>
         </section>
 
         <div id="ego-form-message" style="margin-top: 10px;"></div>

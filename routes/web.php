@@ -21,6 +21,6 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'redirect
 
 Route::get('/', function () {
     return response()->json([
-        'message' => "Bienvenue sur l’API d’EGO"
+        'message' => "Welcome to the EGO API"
     ]);
 });

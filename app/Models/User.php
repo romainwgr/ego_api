@@ -25,6 +25,7 @@ class User extends Authenticatable implements CanResetPasswordContract
      * @var array<string>
      */
     protected $fillable = [
+        'username',
         'first_name',
         'last_name',
         'email',
@@ -32,6 +33,14 @@ class User extends Authenticatable implements CanResetPasswordContract
         'password_algo',
         'google_id',
         'status',
+        'professional_email',
+        'orcid',
+        'userInstitute',
+        'userInstituteId',
+        
+        'userInstituteWebsite',
+        'motivation',
+        'ego_membership'
     ];
 
     /**

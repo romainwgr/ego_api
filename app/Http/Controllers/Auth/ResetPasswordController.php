@@ -82,14 +82,16 @@ class ResetPasswordController extends Controller
         }
     );
 
+    $isSecure = env('APP_ENV') === 'production';
+
     if ($status === Password::PASSWORD_RESET) {
         $cookieJwt = cookie(
             'jwt_token',
             $jwt,
             60, // 1h
             '/',
-            'localhost',
-            false,
+            env('COOKIE_DOMAIN'),
+            $isSecure,
             true,
             false,
             'Lax'
@@ -100,8 +102,8 @@ class ResetPasswordController extends Controller
             $refreshTokenPlain,
             60 * 24 * 7, // 7 jours
             '/',
-            'localhost',
-            false,
+            env('COOKIE_DOMAIN'),
+            $isSecure,
             true,
             false,
             'Lax'

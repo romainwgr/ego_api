@@ -1,41 +1,34 @@
 <?php
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | Cross-Origin Resource Sharing (CORS) Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure your settings for cross-origin resource sharing
-    | or "CORS". This determines what cross-origin operations may execute
-    | in web browsers. You are free to adjust these settings as needed.
-    |
-    | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-    |
-    */
-
 return [
 
-    'paths' => [ 
-    	'auth/google/*',
-    	'password/reset/*',
-    	'api/*', 
-],
+    // Couvre toutes tes routes d’API + auth + reset
+    'paths' => [
+        'api/*',
+        'auth/*',
+        'password/*',
+    ],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('APP_FRONTEND_URL')], 
+    // Utilise l’URL front de ton .env (prod) + tu peux ajouter localhost pour le dev si besoin
+    'allowed_origins' => [
+        env('APP_FRONTEND_URL', 'http://localhost'), // prod: https://migration.ego-network.org
+        'http://localhost',
+        'http://127.0.0.1',
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+    ],
 
     'allowed_headers' => ['*'],
 
-    'supports_credentials' => true,
+    // On n’utilise pas de cookies cross-site
+    'supports_credentials' => false,
 
     'allowed_origins_patterns' => [],
 
-    'exposed_headers' => [],
+    // IMPORTANT pour lire le refresh côté front
+    'exposed_headers' => ['X-Refresh-Token'],
+
     'max_age' => 0,
 ];
-
-    
-    
-

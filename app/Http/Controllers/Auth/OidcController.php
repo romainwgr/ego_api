@@ -29,7 +29,7 @@ class OidcController extends Controller
     {
 
         try {
-            return Socialite::driver('google')->stateless()->redirect(); // ⬅️ Ajout de stateless()
+            return Socialite::driver('google')->stateless()->redirect(); //  Ajout de stateless()
         } catch (\Exception $e) {
             Log::error('Erreur Socialite Google (redirect): ' . $e->getMessage());
             return response()->json([
@@ -73,44 +73,44 @@ class OidcController extends Controller
             'revoked' => false,
         ]);
 
-        $isSecure = env('APP_ENV') === 'production';
+        // $isSecure = env('APP_ENV') === 'production';
 
-        // 5. Renvoyer le refresh token en cookie HttpOnly ou dans la réponse
-        $cookieRefresh = cookie(
-            'refresh_token',
-            $refreshTokenPlain,
-            60 * 24 * 7, // 7 jours
-            '/',
-            env('COOKIE_DOMAIN'),
-            $isSecure,
-            true,
-            false,
-            'Lax'
-        );
+        // // 5. Renvoyer le refresh token en cookie HttpOnly ou dans la réponse
+        // $cookieRefresh = cookie(
+        //     'refresh_token',
+        //     $refreshTokenPlain,
+        //     60 * 24 * 7, // 7 jours
+        //     '/',
+        //     env('COOKIE_DOMAIN'),
+        //     $isSecure,
+        //     true,
+        //     false,
+        //     'Lax'
+        // );
 
-        $cookieJwt  = cookie(
-            'jwt_token',
-            $jwt,
-            60,                // durée en minutes
-            '/',               // path
-            env('COOKIE_DOMAIN'), // domaine (cross-subdomain)
-            $isSecure,              // secure (HTTPS)
-            true,              // httpOnly
-            false,             // raw
-            'Lax'              // SameSite
-        );
+        // $cookieJwt  = cookie(
+        //     'jwt_token',
+        //     $jwt,
+        //     60,                // durée en minutes
+        //     '/',               // path
+        //     env('COOKIE_DOMAIN'), // domaine (cross-subdomain)
+        //     $isSecure,              // secure (HTTPS)
+        //     true,              // httpOnly
+        //     false,             // raw
+        //     'Lax'              // SameSite
+        // );
 
             // Renvoie une réponse JSON avec cookie
             return response()->json([
                 'success' => true,
+                'jwt' =>$jwt,
+                'refresh_token' => $refreshTokenPlain,
                 'user' => [
                     'id'       => $user->id,
+                    'username' => $user->username,
                     'email'    => $user->email,
-                    'first_name' => $user->first_name,
-                    'last_name'  => $user->last_name,
-
                 ],
-            ])->cookie($cookieJwt)->cookie($cookieRefresh);
+            ]);
 
 
         // Ici, ton code de login / création d’utilisateur...

@@ -8,38 +8,51 @@ use Symfony\Component\HttpFoundation\Response;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class EnsureTokenIsValid
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = $request->cookie('jwt_token');
-
-        if (!$token) {
-            return response()->json(['error' => 'JWT token missing'], 401);
+        // 1) Récupérer le header Authorization
+        $auth = $request->header('Authorization', '');
+        if (!str_starts_with($auth, 'Bearer ')) {
+            return response()->json(['error' => 'Missing Bearer token'], 401);
+        }
+        $token = trim(substr($auth, 7));
+        if ($token === '') {
+            return response()->json(['error' => 'Empty token'], 401);
         }
 
+        // 2) Décoder et vérifier le JWT
         try {
             $decoded = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
-
-            // Ajout de l'utilisateur dans la requête
-            $user = User::find($decoded->sub);
-
-            if (!$user || !in_array($user->role, ['user', 'admin'])) {
-                return response()->json(['error' => 'Unauthorized or inactive user'], 403);
-            }
-
-            $request->merge(['auth_user' => $user]);
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Invalid token: ' . $e->getMessage()], 401);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Invalid token: '.$e->getMessage()], 401);
         }
+
+        // 3) Charger l’utilisateur
+        $userId = isset($decoded->sub) ? (int) $decoded->sub : null;
+        if (!$userId) {
+            return response()->json(['error' => 'Invalid token subject'], 401);
+        }
+
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 401);
+        }
+
+        // 4) (Option) vérifier statut/bannissement ici si nécessaire
+        // if ($user->status === 'banned') {
+        //     return response()->json(['error' => 'Account banned'], 403);
+        // }
+
+        // 5) Attacher l’utilisateur à la requête et au système d’auth
+        // - accessible via request()->get('auth_user')
+        $request->attributes->set('auth_user', $user);
+
+        // - et via Auth::user()
+        Auth::setUser($user);
 
         return $next($request);
     }

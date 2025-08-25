@@ -10,6 +10,9 @@ use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Models\User;
 use App\Services\JwtService;
+use App\Models\RefreshToken;
+use Illuminate\Support\Carbon;
+
 
 
 class ResetPasswordController extends Controller
@@ -38,84 +41,66 @@ class ResetPasswordController extends Controller
         return redirect()->away($url);
     }
 
-    
-        
 
-    /** POST /reset-password */
-    public function reset(Request $request, JwtService $jwtService)
+/** POST /reset-password */
+public function reset(Request $request, JwtService $jwtService)
 {
     $request->validate([
-        'token'    => 'required',
-        'email'    => 'required|email',
-        'password' => 'required|min:8|confirmed',
+        'token'    => ['required'],
+        'email'    => ['required','email'],
+        'password' => ['required','string','min:8','confirmed'],
     ]);
 
     $jwt = null;
-    $refreshTokenPlain = null;
+    $newRefreshHeader = null; // contiendra "<tokenId>.<secret>"
     $userUpdated = null;
 
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
-        function (User $user, string $password) use (&$jwt, &$userUpdated, $jwtService, &$refreshTokenPlain) {
-            // Réinitialisation
+        function (User $user, string $password) use (&$jwt, &$userUpdated, &$newRefreshHeader, $jwtService) {
+
+            // 1) Réinitialisation du mot de passe
             $user->forceFill([
-                'password' => Hash::make($password),
+                'password'       => Hash::make($password),
+                'password_algo'  => config('hashing.driver'), // garde une trace de l’algo
                 'remember_token' => Str::random(60),
             ])->save();
 
             event(new PasswordReset($user));
-
             $userUpdated = $user;
 
-            // Génération JWT
+            // 2) Sécurité: révoquer tous les anciens refresh tokens
+            RefreshToken::where('user_id', $user->id)->update(['revoked_at' => now()]);
+
+            // 3) Émettre un nouveau JWT d'accès
             $jwt = $jwtService->createTokenForUser($user);
 
-            // Génération du refresh token
-            $refreshTokenPlain = Str::random(64);
+            // 4) Émettre un nouveau refresh token (stocké en DB, hashé) + renvoyé en header
+            $secret  = Str::random(64);           // jamais stocké en clair côté serveur
+            $tokenId = (string) Str::uuid();
 
             RefreshToken::create([
-                'user_id' => $user->id,
-                'token' => Hash::make($refreshTokenPlain),
-                'expires_at' => Carbon::now()->addDays(7),
-                'revoked' => false,
+                'user_id'    => $user->id,
+                'token_id'   => $tokenId,
+                'token_hash' => Hash::make($secret),
+                'expires_at' => Carbon::now()->addDays((int) env('REFRESH_TTL_DAYS', 7)),
             ]);
+
+            $newRefreshHeader = $tokenId . '.' . $secret; // à renvoyer en header
         }
     );
 
-    $isSecure = env('APP_ENV') === 'production';
-
     if ($status === Password::PASSWORD_RESET) {
-        $cookieJwt = cookie(
-            'jwt_token',
-            $jwt,
-            60, // 1h
-            '/',
-            env('COOKIE_DOMAIN'),
-            $isSecure,
-            true,
-            false,
-            'Lax'
-        );
-
-        $cookieRefresh = cookie(
-            'refresh_token',
-            $refreshTokenPlain,
-            60 * 24 * 7, // 7 jours
-            '/',
-            env('COOKIE_DOMAIN'),
-            $isSecure,
-            true,
-            false,
-            'Lax'
-        );
-
-        return response()->json([
-            'message' => __('passwords.' . $status),
-            'user' => [
-                'id'    => $userUpdated->id,
-                'email' => $userUpdated->email,
-            ]
-        ], 200)->cookie($cookieJwt)->cookie($cookieRefresh);
+        return response()
+            ->json([
+                'message' => __('passwords.' . $status),
+                'jwt'     => $jwt,
+                'user'    => [
+                    'id'    => $userUpdated->id,
+                    'email' => $userUpdated->email,
+                ],
+            ], 200)
+            ->header('X-Refresh-Token', $newRefreshHeader);
     }
 
     return response()->json([
@@ -123,4 +108,5 @@ class ResetPasswordController extends Controller
         'message' => 'Échec de la réinitialisation du mot de passe.',
     ], 400);
 }
+
 }

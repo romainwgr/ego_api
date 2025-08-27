@@ -160,3 +160,4 @@ Route::get('/globalregiontable', [GlobalRegionTableController::class, 'index'])-
 // Route::get('/zotero-items', [ZoteroController::class, 'index'])->name('zotero-items.index'); i use my zotero
 Route::get('/', [ApiIndexController::class, 'index']);
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/getprojects',[ProjectController::class, 'getProjects'])->name('projects.getProjects');

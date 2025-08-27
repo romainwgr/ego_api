@@ -12,4 +12,11 @@ class ProjectController extends Controller
     {
         return response()->json(Project::all());
     }
+
+
+
+    public function getProjects(){
+        $projects = Project::select('name', 'locator', 'attached_icon', 'description')->get();
+        return response()->json($projects);
+    }
 }

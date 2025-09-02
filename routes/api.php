@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Auth\OidcController;
 
 
 
@@ -41,6 +42,9 @@ Route::prefix('auth')->group(function () {
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::middleware('auth.jwt')->get('/me', [AuthController::class, 'me']);
+
+    Route::post('/exchange', [OidcController::class, 'exchange']);
+
 
 });
 

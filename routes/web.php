@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;  
+
+use App\Http\Controllers\DeploiementFormulaireController;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +30,6 @@ Route::get('/', function () {
 
 
 
-use App\Http\Controllers\DeploiementFormulaireController;
 
 // Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);

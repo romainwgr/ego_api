@@ -27,6 +27,7 @@ Route::get('/', function () {
 
 
 
-use App\Http\Controllers\RegisterFormulaireController;
+use App\Http\Controllers\DeploiementFormulaireController;
 
-Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+// Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);

@@ -24,3 +24,9 @@ Route::get('/', function () {
         'message' => "Welcome to the EGO API"
     ]);
 });
+
+
+
+use App\Http\Controllers\RegisterFormulaireController;
+
+Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);

@@ -139,8 +139,8 @@ use App\Http\Controllers\EgoMemberTableauController;
 Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
 
 Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormulaireAjax']);
-
-Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+// dans web.php
+// Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 
 Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
 

@@ -16,7 +16,7 @@ class DeploiementFormulaireController extends Controller
     {
         $user = EgoUserTest::where('status', 'accepted')->get();
         $json = file_get_contents(resource_path('DescriptionFormulaireDeploiement.json'));
-        $gliders = EgoGlider::all();
+        // $gliders = EgoGlider::all();
         // Le décoder en tableau PHP
         $champs = json_decode($json, true);
         $vehicle = file_get_contents(resource_path('uuv-usv.json'));
@@ -72,27 +72,5 @@ class DeploiementFormulaireController extends Controller
         return response($json, 200)
         ->header('Content-Type', 'application/json')
         ->header('Content-Disposition', 'attachment; filename="utilisateur.json"');
-    }
-    public function popupCapteur($modelId)
-    {
-        $json = file_get_contents(resource_path('export_sensor_model_gliders_v6.json'));
-        $data = json_decode($json, true);
-
-        $model = null;
-
-        
-        foreach ($data as $family) {
-            if (isset($family['SENSOR_MODEL_NAMES'][$modelId])) {
-                $model = $family['SENSOR_MODEL_NAMES'][$modelId];
-                break;
-            }
-        }
-
-        if (!$model) {
-            abort(404, "Modèle de capteur non trouvé.");
-        }
-
-
-        return view('popup-sensor', ['model' => $model]);
     }
 }

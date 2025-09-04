@@ -7,6 +7,7 @@ return [
         'api/*',
         'auth/*',
         'password/*',
+        'embed/*',
     ],
 
     'allowed_methods' => ['*'],

@@ -365,7 +365,7 @@ To remove a sensor already selected, simply press the minus icon">Sensor familie
                     <div class="sensor-list">
                         <h3 title="Choose at least ONE sensor (select Sensor families then Sensor model and press the plus icon).
 If you have such sensor model registered in the EGO database (from Coriolis), you can choose from the Json files of these models to use as a template.
-Once you have chosen the sensor, provide at least the Serial number and the last calibration file.">Sensor list</h5>
+Once you have chosen the sensor, provide at least the Serial number and the last calibration file.">Sensor list</h3>
                         <div id="sensor-list-container"></div>
                     </div>
                 </div>

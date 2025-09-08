@@ -15,5 +15,10 @@ class Member extends Model
         'latitude',
         'longitude',
         'description',
+        'nationality',
+        'logo_ego_member',
+        'edmoRecordId',
+        'resp_inclear',
+        'address',
     ];
 }

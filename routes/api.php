@@ -16,7 +16,7 @@ use App\Http\Controllers\MyProfileController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Auth\OidcController;
-
+use App\Http\Controllers\EgoMemberController;
 
 
 /*
@@ -102,6 +102,8 @@ Route::get('/zotero-total', [\App\Http\Controllers\ZoteroController::class, 'cou
 // My account
 Route::get('/my-account', [\App\Http\Controllers\MyAccountController::class, 'index'])->name('my-account.index');
 
+// Tableau ego member
+Route::get('/ego-member', [\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberTable']);
 // New Damien
 
 
@@ -142,7 +144,7 @@ Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormul
 Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 // dans web.php
 
-Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+// Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
 
 Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class, 'popupCapteur']);
 

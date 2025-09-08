@@ -17,7 +17,7 @@ class EgoMemberController extends Controller
     *
     */
     public function getEgoMemberTable(){
-        $members = EgoMember::select('nationality', 'logo_ego_member', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
+        $members = Member::select('nationality', 'logo_ego_member', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
 
         // Renvoyer les données au format JSON.
         return response()->json([

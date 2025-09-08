@@ -19,6 +19,7 @@ Class EgoMember extends Model{
         'address',
         'locator',
         'edmoRecordId',
+        'resp_inclear',
         'country',
         'is_displayed'
     ];

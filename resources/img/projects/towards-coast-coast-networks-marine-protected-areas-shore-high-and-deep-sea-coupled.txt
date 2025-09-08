@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html lang="en" dir="ltr" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# book: http://ogp.me/ns/book# profile: http://ogp.me/ns/profile# video: http://ogp.me/ns/video# product: http://ogp.me/ns/product# content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://www.msp-platform.eu/sites/default/files/msp_logo_favicon.png" type="image/png" />
+<meta name="description" content="COCONET identifies groups of putatively interconnected MPAs in the Mediterranean and the Black Seas, shifting from local (single MPA) to regional (Networks of MPAs) and basin (network of networks) scales. The project is meant to enhance policies of effective environmental management, also to ascertain if the existing MPAs are sufficient for ecological networking and to suggest how to design further protection schemes based on effective exchanges between protected areas. The coastal focus is widened to off shore and deep sea habitats, comprising them in MPAs Networks." />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="https://www.msp-platform.eu/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled" />
+<link rel="shortlink" href="https://www.msp-platform.eu/node/706" />
+<meta property="og:site_name" content="European MSP Platform" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.msp-platform.eu/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled" />
+<meta property="og:title" content="Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET)" />
+<meta property="og:description" content="COCONET identifies groups of putatively interconnected MPAs in the Mediterranean and the Black Seas, shifting from local (single MPA) to regional (Networks of MPAs) and basin (network of networks) scales. The project is meant to enhance policies of effective environmental management, also to ascertain if the existing MPAs are sufficient for ecological networking and to suggest how to design further protection schemes based on effective exchanges between protected areas. The coastal focus is widened to off shore and deep sea habitats, comprising them in MPAs Networks." />
+<meta property="og:updated_time" content="2021-02-10T12:19:34+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://www.msp-platform.eu/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled" />
+<meta name="twitter:title" content="Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET)" />
+<meta name="twitter:description" content="COCONET identifies groups of putatively interconnected MPAs in the Mediterranean and the Black Seas, shifting from local (single MPA) to regional (Networks of MPAs) and basin (network of networks) scales. The project is meant to enhance policies of effective environmental management, also to ascertain if the existing MPAs are sufficient for ecological networking and to suggest how to design further protection schemes based on effective exchanges between protected areas. The coastal focus is widened to off shore and deep sea habitats, comprising them in MPAs Networks." />
+<meta property="article:published_time" content="2016-08-16T16:01:48+02:00" />
+<meta property="article:modified_time" content="2021-02-10T12:19:34+01:00" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ffffff">
+  <title>Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET) | European MSP Platform</title>
+  <link type="text/css" rel="stylesheet" href="https://www.msp-platform.eu/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.msp-platform.eu/sites/default/files/css/css_SeWvBCxVCV4aJ-V4tVk7Z5li1zC9gf6H6b03lSNU5v0.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.msp-platform.eu/sites/default/files/css/css_SUpyZ23dYlMxf_A_WgSfxhlcuUbztSt7G2Il3dpAu4Q.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.msp-platform.eu/sites/default/files/css/css_dRKwrVV4n6xjmouSyOaNBjnahLudyagSH3_A9TYW1Mg.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.msp-platform.eu/sites/default/files/css/css_Q4rXezpdq-PXwp0qra30vH6hjxK6H0OzbJxT1dR2XP0.css" media="print" />
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--[if IE ]>
+  <link href="/sites/all/themes/mspplatform/css/ie.css" rel="stylesheet" type="text/css">
+<![endif]-->
+  <script src="https://www.msp-platform.eu/sites/default/files/js/js__RLT4dZVyHjWeb0BjcozDX9y9EHfZf6b8wS_bg87Zl8.js"></script>
+<script src="https://www.msp-platform.eu/sites/default/files/js/js_97XsbAutgt2HWVoyFfTjzuLeq3Ty2NjkRNKm8EFe7lM.js"></script>
+<script src="https://www.msp-platform.eu/sites/default/files/js/js_Li6_Uj3mCFOoplU5-J18CVD-X_TR1umk1bwT7RGJ2wo.js"></script>
+<script src="https://www.msp-platform.eu/sites/default/files/js/js_BSSHQwCjMr_EagDn2w39pzHTsJSU_zB9pOX4DQ47SpM.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"mspplatform","theme_token":"mMzqRs6ZyB38SxfqfcGe9WHZtzRPd7khTQ5XIGJiRxc","js":{"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/1.9\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/custom\/gdpr_data_control\/js\/cookie-note\/cookie-note-plugin.js":1,"sites\/all\/modules\/custom\/newsletter2go\/newsletter2go_ajax.js":1,"sites\/all\/themes\/mspplatform\/bootstrap-3.4.1-local\/bootstrap.js":1,"sites\/all\/themes\/mspplatform\/js\/libs\/modernizr.custom.83791.js":1,"sites\/all\/themes\/mspplatform\/js\/libs\/chosen\/chosen.jquery.js":1,"sites\/all\/themes\/mspplatform\/js\/libs\/qtip2\/jquery.qtip.js":1,"sites\/all\/themes\/mspplatform\/js\/main.js":1},"css":{"modules\/system\/system.base.css":1,"sites\/all\/modules\/custom\/gdpr_data_control\/js\/cookie-note\/cookie-note.css":1,"sites\/all\/modules\/contrib\/simplenews\/simplenews.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"sites\/all\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/contrib\/print\/print_ui\/css\/print_ui.theme.css":1,"sites\/all\/themes\/mspplatform\/bootstrap-3.4.1-local\/bootstrap.css":1,"sites\/all\/themes\/mspplatform\/bootstrap-3.4.1-local\/overrides.min.css":1,"sites\/all\/themes\/mspplatform\/js\/libs\/chosen\/chosen.css":1,"sites\/all\/themes\/mspplatform\/js\/libs\/qtip2\/jquery.qtip.css":1,"sites\/all\/themes\/mspplatform\/css\/style.css":1,"sites\/all\/themes\/mspplatform\/cookienote\/cookie-note.css":1,"sites\/all\/themes\/mspplatform\/css\/print.css":1}},"cookie_note":{"OPTINbuttonlabel":"I Agree","showOptOut":1,"OPTOUTbuttonlabel":"I Decline","text":"Some features on our website require sending data to third parties. Among these features are the fonts we\u0027ve chosen for our content, the site\u0027s search feature, and the twitter widget on the front page. If you would like to see the fonts or use these features, we need your agreement to pass along some data about your visit. We also use a tracking script to learn how people use our website and find out how to improve it. Find out more about the data gathering tools we use and your choice to decline them in our \u003Ca href=\u0022{{url}}\u0022\u003E{{linktext}}\u003C\/a\u003E.","linktext":"privacy statement","url":"\/privacy-statement"},"bootstrap":{"anchorsFix":"0","anchorsSmoothScrolling":"0","formHasError":0,"popoverEnabled":0,"popoverOptions":{"animation":0,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":0,"html":0,"placement":"auto top","selector":"","trigger":"hover","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-706 node-type-project dnt" >
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <header id="navbar" role="banner" class="container">
+  <div class="row">
+    <div class="navbar-header col-md-5 col-sm-9 col-xs-8">
+            <a class="logo navbar-btn pull-left" href="/" title="Home">
+        <img src="https://www.msp-platform.eu/sites/default/files/header.png" alt="Home" />
+      </a>
+      
+      
+    </div>
+
+          <nav role="navigation" class="visible-md visible-lg col-sm-8 col-md-7">
+
+                                          <section id="block-menu-block-2" class="block block-menu-block clearfix">
+
+      
+  <div class="menu-block-wrapper menu-block-2 menu-name-main-menu parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf has-children menu-mlid-1186"><span class="nolink">MSP in the EU</span></li>
+<li class="leaf has-children menu-mlid-1187"><span class="nolink">MSP Resources</span></li>
+<li class="leaf has-children menu-mlid-1748"><span class="nolink">Stay Informed</span></li>
+<li class="last leaf has-children menu-mlid-1185"><span class="nolink">About &amp; Contact</span></li>
+</ul></div>
+
+</section> <!-- /.block -->
+                  </nav>
+    
+      <div class="col-xs-4 col-sm-3  menu-trigger text-right visible-xs visible-sm">
+            <a href="#menu" class="menu-link">Menu <i class="fa fa-bars"></i></a>
+        </div>
+  </div>
+    <div class="row widget-google-search-mobile">
+        <div class="col-xs-12">
+<gcse:search></gcse:search>
+        </div>
+      </div>
+</header>
+
+<div class="main-container container">
+
+  <header role="banner" id="page-header">
+    
+    <section id="block-block-15" class="block block-block clearfix">
+
+      
+  <p><strong>On 1 April 2021, EASME A3 EMFF became part of the European Climate, Infrastructure and Environment Executive Agency (CINEA) to implement the EMFAF (European Maritime Fisheries and Aquaculture Fund) successor of EMFF. Relevant documents such as data protection notices are being reviewed &amp; updated in light of our current transfer from EASME to CINEA Executive Agency. Thus, after 1 April 2021 any reference to EASME shall be read as CINEA during the transition period.</strong></p>
+
+</section> <!-- /.block -->
+  </header> <!-- /#page-header -->
+
+  <div class="row">
+
+    
+    <section class="col-sm-12">
+                  <a id="main-content"></a>
+                    <h1 class="page-header">Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET)</h1>
+                                                        <section id="block-system-main" class="block block-system clearfix">
+
+      
+  
+
+<article id="node-706" class="node node-project clearfix" about="/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled" typeof="sioc:Item foaf:Document">
+
+    <div class="row">
+    <div class="col-sm-5 section-sidebar">
+        <div class="field field-name-field-image field-type-image field-label-hidden"><div class="field-items"><div class="field-item even"><img typeof="foaf:Image" class="img-responsive" src="https://www.msp-platform.eu/sites/default/files/project/coconet_logo.png" width="250" height="250" alt="This image shows the logo for the COCONET project" title="Logo CoCONET" /></div></div></div>                <div class="field field-name-field-term-funding-programme field-type-taxonomy-term-reference field-label-above"><div class="field-label">Funding Programme:&nbsp;</div><div class="field-items"><div class="field-item even">European Commission</div></div></div>        <div class="field field-name-field-term-sea-basin field-type-taxonomy-term-reference field-label-above"><div class="field-label">Sea Basin(s):&nbsp;</div><div class="field-items"><div class="field-item even"><a href="/sea-basins/west-mediterranean" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-western-med">Western Med</a></div><div class="field-item odd"><a href="/sea-basins/east-mediterranean" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-eastern-med">Eastern Med</a></div></div></div>        <div class="field field-name-field-term-country field-type-taxonomy-term-reference field-label-above"><div class="field-label">Countries:&nbsp;</div><div class="field-items"><div class="field-item even"><a href="/countries/croatia" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-croatia">Croatia</a></div><div class="field-item odd"><a href="/countries/cyprus" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-cyprus">Cyprus</a></div><div class="field-item even"><a href="/countries/france" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-france">France</a></div><div class="field-item odd"><a href="/countries/greece" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-greece">Greece</a></div><div class="field-item even"><a href="/countries/italy" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-italy">Italy</a></div><div class="field-item odd"><a href="/countries/malta" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-malta">Malta</a></div><div class="field-item even"><a href="/countries/spain" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="" class="term-link term-link-spain">Spain</a></div></div></div>        <div class="field field-name-field-term-status field-type-taxonomy-term-reference field-label-above"><div class="field-label">Status:&nbsp;</div><div class="field-items"><div class="field-item even">Completed</div></div></div>        <div class="field field-name-field-date-year field-type-datetime field-label-above"><div class="field-label">Completion Year:&nbsp;</div><div class="field-items"><div class="field-item even"><span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2016-01-01T00:00:00+01:00">2016</span></div></div></div>        <div class="field field-name-field-ref-practices field-type-entityreference field-label-above"><div class="field-label">Practices:&nbsp;</div><div class="field-items"><div class="field-item even"><a href="/practices/position-paper-stakeholder-perceptions-mpas">Position paper on stakeholder perceptions of MPAs </a></div></div></div>        <div class="field field-name-field-website-source field-type-text-long field-label-above"><div class="field-label">Website/Source:&nbsp;</div><div class="field-items"><div class="field-item even"><p><a href="https://www.coconet-fp7.eu/">https://www.coconet-fp7.eu/</a></p>
+<p><a href="https://cordis.europa.eu/project/id/287844/fr">https://cordis.europa.eu/project/id/287844/fr</a></p>
+<p> </p>
+</div></div></div>        <div class="field field-name-field-contact-person field-type-text-long field-label-above"><div class="field-label">Contact Person(s):&nbsp;</div><div class="field-items"><div class="field-item even"><p>Prof. Dr. Fedinando Boero</p>
+<p>Project Coordinator</p>
+<p>CNR-ISMAR</p>
+<p>+39 0832 298619</p>
+<p>E-mail: <a href="mailto:boero@unisalento.it">boero@unisalento.it</a></p>
+</div></div></div>
+    </div>
+    <div class="col-sm-6 section-content">
+        <h1 class="visible-md visible-lg">Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET)</h1>
+        <div class="field field-name-field-dates field-type-datetime field-label-above"><div class="field-label">Project Implementation Period:&nbsp;</div><div class="field-items"><div class="field-item even"><div class="date-display-range"><span class="date-display-start" property="dc:date" datatype="xsd:dateTime" content="2012-02-01T00:00:00+01:00">February 2012</span> - <span class="date-display-end" property="dc:date" datatype="xsd:dateTime" content="2016-01-01T00:00:00+01:00">January 2016</span></div></div></div></div>        <div class="field field-name-field-specific-funding-programme field-type-text-long field-label-above"><div class="field-label">Specific Funding Programme:&nbsp;</div><div class="field-items"><div class="field-item even"><p>FP7 (EU 7th Framework Programme for Research and Technological Development)</p>
+</div></div></div>        <div class="field field-name-field-budget field-type-text-long field-label-above"><div class="field-label">Budget:&nbsp;</div><div class="field-items"><div class="field-item even"><p>Total project budget was 11 323 365,68 euro.</p>
+<p> </p>
+</div></div></div>        <div class="field field-name-body field-type-text-with-summary field-label-above"><div class="field-label">About the Project:&nbsp;</div><div class="field-items"><div class="field-item even" property="content:encoded"><p>COCONET identifies groups of putatively interconnected MPAs in the Mediterranean and the Black Seas, shifting from local (single MPA) to regional (Networks of MPAs) and basin (network of networks) scales. The project is meant to enhance policies of effective environmental management, also to ascertain if the existing MPAs are sufficient for ecological networking and to suggest how to design further protection schemes based on effective exchanges between protected areas. The coastal focus is widened to off shore and deep sea habitats, comprising them in MPAs Networks. These activities will also individuate areas where Offshore Wind Farms might become established, avoiding too sensitive habitats but acting as stepping stones through MPAs.</p>
+<h2>Project partners:</h2>
+<ul>
+<li>University Mohammed V-Agdal Morocco</li>
+<li>cCnsorzio nazionale interuniversitario per le scienze del mare Italy</li>
+<li>3E NV Belgium</li>
+<li>University of the Aegean-Research Unit Greece</li>
+<li>CLU srl Italy</li>
+<li>Centre national de la recherche scientifique CNRS France</li>
+<li>Coispa tecnologia &amp; ricerca scarl Italy</li>
+<li>Agencia estatal consejo superior deinvestigaciones cientificas Spain</li>
+<li>Danmarks tekniske universitet Denmark</li>
+<li>Institutul national de cercetare-dezvoltare pentru geologie si geoecologie marina-geoecomar Romania</li>
+<li>Hellenic centre for marine research Greece</li>
+<li>Institut po bioraznoobrazie i ekosistemni izsledvaniya balgarska akademiya na naukite Bulgaria</li>
+<li>Instituto espanol de oceanografia Spain</li>
+<li>Universidad de cantabria Spain</li>
+<li>Institut National Agronomique de Tunisie Tunisia</li>
+<li>Institutul national de cercetare-dezvoltare marina grigore antipa Romania</li>
+<li>Israel oceanographic and limnological research limited Israel</li>
+<li>Istanbul universitesi Turkey</li>
+<li>Middle east technical university Turkey</li>
+<li>Marine hydrophysical institute - ukrainian national academy of sciences Ukraine</li>
+<li>Naturebureau limited United Kingdom</li>
+<li>The national environmental agency Georgia</li>
+<li>Nenuphar sarl France</li>
+<li>Stiftelsen nansen senter for miljoog fjernmaling Norway</li>
+<li>Universite mohammed v de Rabat Morocco</li>
+<li>Odessa branch institute of biology of southerns seas national academy of science of Ukraine Ukraine</li>
+<li>p.p. shirshov institute of oceanology of russian academy of sciences Russia</li>
+<li>University of Zadar Croatia</li>
+<li>Fondacioni zoja e keshillit te mire Albania</li>
+<li>Universita ta Malta Malta</li>
+<li>Javna ustanova univerzitet crne gore podgorica Montenegro</li>
+<li>Universitaet rostock Germany</li>
+<li>Sofiiski universitet sveti kliment ohridski Bulgaria</li>
+<li>Universite du sud toulon var France</li>
+<li>Institute of oceanology - bulgarian academy of sciences Bulgaria</li>
+<li>Ukrainian scientific centre of ecology of the sea Ukraine</li>
+<li>A.O. kovalevskiy institute of biology of southern seas Ukraine</li>
+<li>Russian state hydrometeorological university Russia</li>
+<li>Sinop university*sinop fisheries faculty snu ff Turkey</li>
+</ul>
+</div></div></div>    </div>
+    <div class="col-sm-1 section-social widget-social">
+        <h4>Share</h4>
+        <ul>
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.msp-platform.eu/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="https://twitter.com/share?url=https%3A//www.msp-platform.eu/projects/towards-coast-coast-networks-marine-protected-areas-shore-high-and-deep-sea-coupled&text=Towards%20COast%20to%20COast%20NETworks%20of%20marine%20protected%20areas%20%28from%20the%20shore%20to%20the%20high%20and%20deep%20sea%29%2C%20coupled%20with%20sea-based%20wind%20energy%20potential%20%28CoCoNET%29" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        </ul>
+        <h4>Print</h4>
+        <ul>
+            <li><a href="/print/706"><i class="fa fa-print" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+    </div>
+
+  
+      <span property="dc:title" content="Towards COast to COast NETworks of marine protected areas (from the shore to the high and deep sea), coupled with sea-based wind energy potential (CoCoNET)" class="rdf-meta element-hidden"></span>
+  
+  <div class="content">
+      </div>
+
+</article>
+
+
+</section> <!-- /.block -->
+    </section>
+
+    
+  </div>
+</div>
+<footer class="footer container">
+    <div class="row">
+  <section id="block-block-1" class="block block-block col-sm-6 clearfix">
+
+      
+  <p>The European MSP Platform is financed by the European Commission under the EMFF. The European MSP Platform is a result of the 'MSP Assistance Mechanism' implemented by EASME on behalf of DG MARE.</p>
+
+</section> <!-- /.block -->
+<section id="block-menu-menu-meta" class="block block-menu col-sm-6 text-right clearfix">
+
+      
+  <ul class="menu nav"><li class="first leaf"><a href="/newsletter">Newsletter</a></li>
+<li class="leaf"><a href="/about-contact/submit-question">Contact</a></li>
+<li class="leaf"><a href="/legal">Legal</a></li>
+<li class="last leaf"><a href="/privacy-statement">Privacy Notice</a></li>
+</ul>
+</section> <!-- /.block -->
+    </div>
+</footer>
+
+<nav id="menu" class="menu-panel" role="navigation">
+    <div class="container">
+    <div class="pull-right">
+        <a href="#" class="close-button">Close</a>
+    </div>
+    <section id="block-menu-block-3" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">MSP in the EU</h2>
+    
+  <div class="menu-block-wrapper menu-block-3 menu-name-main-menu parent-mlid-1186 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-2529"><a href="/msp-eu/introduction-msp">Introduction to MSP</a></li>
+<li class="leaf menu-mlid-1443"><a href="/msp-practice/seabasins">European Sea basins</a></li>
+<li class="leaf menu-mlid-1176"><a href="/msp-practice/countries">Countries</a></li>
+<li class="last leaf menu-mlid-1119"><a href="/msp-practice/msp-projects">MSP Projects</a></li>
+</ul></div>
+
+</section> <!-- /.block -->
+<section id="block-menu-block-4" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">MSP Resources</h2>
+    
+  <div class="menu-block-wrapper menu-block-4 menu-name-main-menu parent-mlid-1187 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-2324"><a href="/msp-resources/ec-msp-studies">EC MSP Studies</a></li>
+<li class="leaf menu-mlid-1177"><a href="/faq">FAQs</a></li>
+<li class="leaf menu-mlid-2181"><a href="https://www.msp-platform.eu/sectors#">MSP Sectors and Conflicts</a></li>
+<li class="leaf menu-mlid-1118"><a href="/msp-practice/database">Practices Database</a></li>
+<li class="leaf menu-mlid-1746"><a href="/msp-resources/related-initiatives-databases">Related Initiatives &amp; Databases</a></li>
+<li class="leaf menu-mlid-2093"><a href="/msp-resources/msp-library">MSP Library</a></li>
+<li class="last leaf menu-mlid-2091"><a href="/msp-resources/glossary">Glossary</a></li>
+</ul></div>
+
+</section> <!-- /.block -->
+<section id="block-menu-block-5" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">Stay Informed</h2>
+    
+  <div class="menu-block-wrapper menu-block-5 menu-name-main-menu parent-mlid-1748 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1749"><a href="http://msp-platform.eu/news">News</a></li>
+<li class="leaf menu-mlid-1191"><a href="http://msp-platform.eu/events">Events</a></li>
+<li class="leaf menu-mlid-1747"><a href="/stay-informed/eu-msp-platform-conferences-workshops">MSP Platform Conferences &amp; Workshops</a></li>
+<li class="leaf menu-mlid-1178"><a href="/opportunities/funding">Funding</a></li>
+<li class="leaf menu-mlid-1120"><a href="/stay-informed/training">Training</a></li>
+<li class="leaf menu-mlid-1750"><a href="http://msp-platform.eu/newsletter">E-Newsletter</a></li>
+<li class="last leaf menu-mlid-1752"><a href="https://twitter.com/EU_MSP_Platform">Twitter</a></li>
+</ul></div>
+
+</section> <!-- /.block -->
+<section id="block-menu-block-6" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">About &amp; Contact</h2>
+    
+  <div class="menu-block-wrapper menu-block-6 menu-name-main-menu parent-mlid-1185 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1116"><a href="/about-contact/about-us">About Us</a></li>
+<li class="leaf menu-mlid-1115"><a href="/msp-platform/team">Team</a></li>
+<li class="leaf menu-mlid-2528"><a href="https://www.msp-platform.eu/user-guidance">User Guidance</a></li>
+<li class="last leaf menu-mlid-1192"><a href="/about-contact/submit-question">Submit a Question</a></li>
+</ul></div>
+
+</section> <!-- /.block -->
+        <div class="text-center">
+        <a href="#" class="close-text">Go Back</a>
+    </div>
+    </div>
+</nav>
+  <script src="https://www.msp-platform.eu/sites/default/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+   </body>
+</html>

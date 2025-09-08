@@ -17,6 +17,7 @@ class EgoMemberController extends Controller
     *
     */
     public function getEgoMemberTable(){
+        dd('Controller reached!'); 
         $members = EgoMember::select('country','attached_icon', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
 
         $members->each(function ($member) {

@@ -19,6 +19,17 @@ class EgoMemberController extends Controller
     public function getEgoMemberTable(){
         $members = EgoMember::select('country','attached_icon', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
 
+        $members->each(function ($member) {
+        if ($member->attached_icon) {
+            $member->attached_icon = asset('img/members/' . $member->attached_icon);
+        }
+
+        // Si le code du pays existe, construit l'URL complète du drapeau
+        if ($member->country) {
+            $member->country = asset('country-flags/svg/' . $member->country . '.svg');
+        }
+    });
+        
         // Renvoyer les données au format JSON.
         return response()->json([
             'success' => true,

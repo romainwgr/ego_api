@@ -20,13 +20,15 @@ class EgoMemberController extends Controller
         $members = EgoMember::select('country','attached_icon', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
 
         $members->each(function ($member) {
-        if ($member->attached_icon) {
-            $member->attached_icon = asset('img/members/' . $member->attached_icon);
-        }
+            if ($member->attached_icon) {
+                $member->attached_icon = asset('img/members/' . $member->attached_icon);
+            }
 
-        if ($member->country) {
-            $member->country = asset('country-flags/svg/' . $member->country . '.svg');
-        }
+            if ($member->country) {
+                $code = strtolower($member->country);
+
+                $member->country = asset('country-flags/svg/' . $code . '.svg');
+            }
     });
         
         // Renvoyer les données au format JSON.

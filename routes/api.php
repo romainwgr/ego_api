@@ -17,8 +17,16 @@ use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Auth\OidcController;
 use App\Http\Controllers\EgoMemberController;
+use App\Models\EgoGlider;
+use App\Http\Controllers\RegisterFormulaireController;
+use App\Http\Controllers\DeploiementFormulaireController;
+use App\Http\Controllers\EgoMemberTableauController; 
 
-
+use App\Http\Controllers\GlobalRegionController;
+use App\Http\Controllers\GlobalRegionTableController;
+// use App\Http\Controllers\ZoteroController; j'utilise mon zotero
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ApiIndexController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -110,16 +118,6 @@ Route::get('/ego-member', [\App\Http\Controllers\EgoMemberController::class, 'ge
 
 
 
-use App\Models\EgoGlider;
-use App\Http\Controllers\RegisterFormulaireController;
-use App\Http\Controllers\DeploiementFormulaireController;
-use App\Http\Controllers\EgoMemberTableauController; 
-
-
-
-
-
-
 
 
 
@@ -151,11 +149,7 @@ Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class
 // Antoine 
 
 
-use App\Http\Controllers\GlobalRegionController;
-use App\Http\Controllers\GlobalRegionTableController;
-// use App\Http\Controllers\ZoteroController; j'utilise mon zotero
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ApiIndexController;
+
 
 
 Route::get('/members', [MemberController::class, 'index'])->name('members.index');

@@ -39,7 +39,7 @@ class DeploiementFormulaireController extends Controller
         // ]);
         return view('dynamic-form-deploiement', compact('champs', 'sensors', 'gliders', 'vehicle', 
         // 'user',
-         'groupes', 'observatories', 'deployments', 'gliders'));
+         'groupes', 'observatories', 'deployments', ));
         // Retourner du json et transformer dynamic form deploiement sur wordpress
         
     }

@@ -45,6 +45,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             SubstituteBindings::class,
         ]);
+        $middleware->alias([
+            'allow-framing' => \App\Http\Middleware\AllowFraming::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

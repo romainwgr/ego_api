@@ -62,7 +62,7 @@ Route::middleware('auth.jwt')->group(function () {
     // Pour avoir accès aux routes d'administration s'il est admin 
     Route::get('/my-profile', [MyProfileController::class, 'index']);
 });
-
+Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml'])->middleware('allow-framing');
 // Routes réservées à l'admin
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -119,7 +119,7 @@ Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormul
 Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 // dans web.php
 
-Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+
 
 Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class, 'popupCapteur']);
 

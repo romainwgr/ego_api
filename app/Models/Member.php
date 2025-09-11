@@ -11,6 +11,7 @@ class Member extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'item_id',
         'name',
         'latitude',
         'longitude',
@@ -20,5 +21,6 @@ class Member extends Model
         'edmoRecordId',
         'resp_inclear',
         'address',
+        'summary'
     ];
 }

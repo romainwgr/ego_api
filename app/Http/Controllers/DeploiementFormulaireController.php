@@ -14,7 +14,7 @@ class DeploiementFormulaireController extends Controller
 {
     public function genererFormulaireHtml()
     {
-        $user = User::where('status', 'accepted')->get();
+        // $user = User::where('status', 'accepted')->get();
         $json = file_get_contents(resource_path('DescriptionFormulaireDeploiement.json'));
         // $gliders = EgoGlider::all();
         // Le décoder en tableau PHP
@@ -31,7 +31,7 @@ class DeploiementFormulaireController extends Controller
             'champs'        => $champs,
             'sensors'       => $sensors,
             'vehicle'       => $vehicle,
-            'user'          => $user,
+            // 'user'          => $user,
             'groupes'       => $groupes,
             'observatories' => $observatories,
             'deployments'   => $deployments,

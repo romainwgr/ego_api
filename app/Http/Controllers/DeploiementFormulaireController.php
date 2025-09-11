@@ -6,7 +6,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\EgoObservatory;
 use App\Models\EgoDeploiement;
-use App\Models\EgoGroup;
+// use App\Models\EgoGroup;
 use App\Models\EgoGlider;
 use App\Models\User;
 
@@ -23,7 +23,7 @@ class DeploiementFormulaireController extends Controller
         $vehicle = json_decode($vehicle, true);
         $json = file_get_contents(resource_path('export_sensor_model_gliders_v6.json'));
         $sensors = json_decode($json, true);
-        $groupes = EgoGroup::select('group_id', 'group_name')->get();
+        // $groupes = EgoGroup::select('group_id', 'group_name')->get();
         $observatories = EgoObservatory::select('item_id', 'name')->get();
         $deployments = EgoDeploiement::select('deployment_id', 'name', 'glider_id', 'start_date', 'end_date', 'planned_start_date', 'planned_end_date')->get();
         $gliders = EgoGlider::select('glider_id', 'name', 'family', 'WMO_platform_code', 'no_serie', 'owner_id', 'type')->get();
@@ -32,7 +32,7 @@ class DeploiementFormulaireController extends Controller
             'sensors'       => $sensors,
             'vehicle'       => $vehicle,
             // 'user'          => $user,
-            'groupes'       => $groupes,
+            // 'groupes'       => $groupes,
             'observatories' => $observatories,
             'deployments'   => $deployments,
             'gliders'       => $gliders,

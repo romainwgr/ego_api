@@ -119,7 +119,7 @@ Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormul
 Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 // dans web.php
 
-// Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
+Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml']);
 
 Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class, 'popupCapteur']);
 

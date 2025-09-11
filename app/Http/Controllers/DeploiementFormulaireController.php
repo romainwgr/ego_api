@@ -27,7 +27,19 @@ class DeploiementFormulaireController extends Controller
         $observatories = EgoObservatory::select('item_id', 'name')->get();
         $deployments = EgoDeploiement::select('deployment_id', 'name', 'glider_id', 'start_date', 'end_date', 'planned_start_date', 'planned_end_date')->get();
         $gliders = EgoGlider::select('glider_id', 'name', 'family', 'WMO_platform_code', 'no_serie', 'owner_id', 'type')->get();
-        return view('dynamic-form-deploiement', compact('champs', 'sensors', 'gliders', 'vehicle', 'user', 'groupes', 'observatories', 'deployments', 'gliders'));
+        return response()->json([
+            'champs'        => $champs,
+            'sensors'       => $sensors,
+            'vehicle'       => $vehicle,
+            'user'          => $user,
+            'groupes'       => $groupes,
+            'observatories' => $observatories,
+            'deployments'   => $deployments,
+            'gliders'       => $gliders,
+        ]);
+        // return view('dynamic-form-deploiement', compact('champs', 'sensors', 'gliders', 'vehicle', 'user', 'groupes', 'observatories', 'deployments', 'gliders'));
+        // Retourner du json et transformer dynamic form deploiement sur wordpress
+        
     }
     public function traiterFormulaire(Request $request)
     {

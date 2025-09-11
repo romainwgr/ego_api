@@ -27,13 +27,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->group('auth.jwt', [
             ThrottleRequests::class . ':api',
             SubstituteBindings::class,
-            EnsureTokenIsValid::class, // ✅ JWT seulement, pas admin
+            EnsureTokenIsValid::class, // ✅ JWT only
         ]);
         $middleware->group('auth.admin', [
             ThrottleRequests::class . ':api',
             SubstituteBindings::class,
             EnsureTokenIsValid::class,
-            AdminMiddleware::class, // ✅ JWT + admin uniquement
+            AdminMiddleware::class, // ✅ JWT + admin
         ]);
 
 

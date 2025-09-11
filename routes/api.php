@@ -24,7 +24,6 @@ use App\Http\Controllers\EgoMemberTableauController;
 
 use App\Http\Controllers\GlobalRegionController;
 use App\Http\Controllers\GlobalRegionTableController;
-// use App\Http\Controllers\ZoteroController; j'utilise mon zotero
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ApiIndexController;
 /*
@@ -114,28 +113,6 @@ Route::get('/my-account', [\App\Http\Controllers\MyAccountController::class, 'in
 Route::get('/ego-member', [\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberTable']);
 // New Damien
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
 
 Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormulaireAjax']);
@@ -147,10 +124,6 @@ Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulai
 Route::get('/decrire-capteur/{capteur}', [DeploiementFormulaireController::class, 'popupCapteur']);
 
 // Antoine 
-
-
-
-
 
 Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 

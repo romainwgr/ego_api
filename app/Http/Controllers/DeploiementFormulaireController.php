@@ -8,13 +8,13 @@ use App\Models\EgoObservatory;
 use App\Models\EgoDeploiement;
 use App\Models\EgoGroup;
 use App\Models\EgoGlider;
-use App\Models\EgoUserTest;
+use App\Models\User;
 
 class DeploiementFormulaireController extends Controller
 {
     public function genererFormulaireHtml()
     {
-        $user = EgoUserTest::where('status', 'accepted')->get();
+        $user = User::where('status', 'accepted')->get();
         $json = file_get_contents(resource_path('DescriptionFormulaireDeploiement.json'));
         // $gliders = EgoGlider::all();
         // Le décoder en tableau PHP

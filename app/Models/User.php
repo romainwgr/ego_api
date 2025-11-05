@@ -37,10 +37,10 @@ class User extends Authenticatable implements CanResetPasswordContract
         'orcid',
         'userInstitute',
         'userInstituteId',
-        
         'userInstituteWebsite',
         'motivation',
-        'ego_membership'
+        'ego_membership',
+        'ego_member_id',
     ];
 
     /**
@@ -62,4 +62,15 @@ class User extends Authenticatable implements CanResetPasswordContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+        /** Relation : chaque user appartient éventuellement à un ego_member */
+    public function egoMember()
+    {
+        return $this->belongsTo(EgoMember::class, 'ego_member_id', 'item_id');
+    }
+
+    /** Scope utile : users sans ego_member */
+    public function scopeWithoutEgoMember($query)
+    {
+        return $query->whereNull('ego_member_id');
+    }
 }

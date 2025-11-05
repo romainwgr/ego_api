@@ -62,6 +62,7 @@ Route::middleware('auth.jwt')->group(function () {
     // Pour avoir accès aux routes d'administration s'il est admin 
     Route::get('/my-profile', [MyProfileController::class, 'index']);
     Route::post('/my-profile/organization',[MyProfileController::class, 'updateOrganization'] );
+    Route::post('/my-profile/motivation',[MyProfileController::class, 'updateMotivation']);
 });
 Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml'])->middleware('allow-framing');
 // Routes réservées à l'admin

@@ -82,5 +82,24 @@ class MyProfileController extends Controller
             'message' => 'Organization updated successfully.',
         ]);
     }
+    public function updateMotivation(Request $request){
+        $user = $request->get('auth_user');
+
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
+        }
+        $validated = $request->validate([
+            'motivation' => 'nullable|string|max:500',
+        ]);
+        $user->update(['motivation' => $validated['motivation'] ?? null]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Motivation updated successfully.',
+            'motivation' => $user->motivation,
+        ]);
+
+
+    }
     public function modifyPassword(){}
 }

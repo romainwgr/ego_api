@@ -63,7 +63,7 @@ class MyProfileController extends Controller
             ]
         ]);
     }
-    public function updateOrganization(){
+    public function updateOrganization(Request $request){
         // Récupère l'utilisateur connecté
         $user = $request->get('auth_user');
 

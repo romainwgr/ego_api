@@ -106,7 +106,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/get-my-institute-users', [
         UserManagementController::class, 'getMyInstituteUsers'
     ]);
-    Route::post('/admin/contact-user',[
+    Route::post('/admin/contact-user/{id}',[
         UserManagementController::class, 'contactUser'
     ]);
 

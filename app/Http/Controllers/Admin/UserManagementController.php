@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
-// TODO Gérer la pagination
+// TODO Gérer la pagination (optionnel)
 // TODO Recherche selon le mail, username, nom, prénom, institut, etc.
 // TODO Trier selon le statut, le role, l'institut etc.
 // TODO Envoyer des emails automatisés
@@ -27,13 +27,7 @@ class UserManagementController extends Controller
      */
     public function getPendingRequests(Request $request)
     {
-
-        // Assuming you have a method to get pending requests
         $pendingRequests = User::where('status', 'pending')->get();
-
-        if ($pendingRequests->isEmpty()) {
-            return response()->json(['message' => 'No pending requests found'], 404);
-        }
 
         return response()->json([
             'message' => 'Pending requests retrieved successfully',
@@ -159,12 +153,6 @@ class UserManagementController extends Controller
     {
         $bannedUsers = User::where('status', 'banned')->get();
 
-        if ($bannedUsers->isEmpty()) {
-            return response()->json(['message' => 'No banned users found',
-            
-        ]);
-        }
-
         return response()->json([
             'message' => 'Banned users retrieved successfully',
             'data' => $bannedUsers
@@ -191,14 +179,30 @@ class UserManagementController extends Controller
     public function getRejectedUsers(Request $request)
     {
         $rejectedUsers = User::where('status', 'rejected')->get();
-
-        if ($rejectedUsers->isEmpty()) {
-            return response()->json(['message' => 'No rejected users found'], 404);
-        }
-
+        //gestion de la liste vide dans le frontend
         return response()->json([
             'message' => 'Rejected users retrieved successfully',
             'data' => $rejectedUsers
+        ]);
+    }
+    // Récupère les utilisateurs étant dans le même institut que l'utilisateur connecté
+    public function getMyInstituteUsers(Request $request){
+        $user = $request->get('auth_user');
+        $myInstitute = $user->ego_member_id;
+        $myInstituteUsersWithoutMe = User::where('ego_member_id', $myInstitute)
+            ->where('id', '!=', $user->id)
+            ->get();
+        return response()->json([
+            'message' => 'Users from my institute retrieved successfully',
+            'data'=> $myInstituteUsersWithoutMe
+        ]);
+    }
+    public function getUncompletedUsers(Request $request){
+        
+        $uncompletedUsers = User::where('status', 'uncompleted')->get();
+        return response()->json([
+            'message' => 'Uncompleted users retrieved successfully',
+            'data' => $uncompletedUsers
         ]);
     }
 

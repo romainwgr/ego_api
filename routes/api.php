@@ -88,10 +88,10 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/get-user-info', [
         UserManagementController::class, 'getUserById'
     ]);
-    Route::post('/admin/ban-user', [
+    Route::post('/admin/ban-user/{id}', [
         UserManagementController::class, 'banUser'
     ]);
-    Route::post('/admin/unban-user', [
+    Route::post('/admin/unban-user/{id}', [
         UserManagementController::class, 'unbanUser'
     ]);
     Route::get('/admin/get-rejected-users',[
@@ -99,6 +99,12 @@ Route::middleware('auth.admin')->group(function () {
     ]);
     Route::get('/admin/get-banned-users', [
         UserManagementController::class, 'getBannedUsers'
+    ]);
+    Route::get('/admin/get-uncompleted-users',[
+        UserManagementController::class, 'getUncompletedUsers'
+    ]);
+    Route::get('/admin/get-my-institute-users', [
+        UserManagementController::class, 'getMyInstituteUsers'
     ]);
 
 });

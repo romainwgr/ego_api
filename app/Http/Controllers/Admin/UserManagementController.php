@@ -5,7 +5,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-
+use App\Mail\contactUserMail;
+USE Illuminate\Support\Facades\Mail;
 // TODO Gérer la pagination (optionnel)
 // TODO Recherche selon le mail, username, nom, prénom, institut, etc.
 // TODO Trier selon le statut, le role, l'institut etc.
@@ -27,7 +28,9 @@ class UserManagementController extends Controller
      */
     public function getPendingRequests(Request $request)
     {
-        $pendingRequests = User::where('status', 'pending')->get();
+        $pendingRequests = User::where('status', 'pending')
+            ->with(['egoMember'])
+            ->get();
 
         return response()->json([
             'message' => 'Pending requests retrieved successfully',
@@ -91,7 +94,7 @@ class UserManagementController extends Controller
      */
     public function getAllUsers(Request $request)
     {
-        $users = User::all();
+        $users = User::with('egoMember')->get();
 
         if ($users->isEmpty()) {
             return response()->json(['message' => 'No users found'], 404);
@@ -151,7 +154,9 @@ class UserManagementController extends Controller
     }
     public function getBannedUsers(Request $request)
     {
-        $bannedUsers = User::where('status', 'banned')->get();
+        $bannedUsers = User::where('status', 'banned')           
+            ->with(['egoMember'])
+            ->get();
 
         return response()->json([
             'message' => 'Banned users retrieved successfully',
@@ -178,7 +183,9 @@ class UserManagementController extends Controller
     }
     public function getRejectedUsers(Request $request)
     {
-        $rejectedUsers = User::where('status', 'rejected')->get();
+        $rejectedUsers = User::where('status', 'rejected')
+            ->with(['egoMember'])
+            ->get();
         //gestion de la liste vide dans le frontend
         return response()->json([
             'message' => 'Rejected users retrieved successfully',
@@ -191,6 +198,7 @@ class UserManagementController extends Controller
         $myInstitute = $user->ego_member_id;
         $myInstituteUsersWithoutMe = User::where('ego_member_id', $myInstitute)
             ->where('id', '!=', $user->id)
+            ->with(['egoMember'])
             ->get();
         return response()->json([
             'message' => 'Users from my institute retrieved successfully',
@@ -204,6 +212,22 @@ class UserManagementController extends Controller
             'message' => 'Uncompleted users retrieved successfully',
             'data' => $uncompletedUsers
         ]);
+    }
+    public function contactUser(Request $request, $id){
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        Mail::to($user->email)->send(
+            new ContactUserMail(
+                $request->input('message'),
+                $request->input('subject')
+            )
+        );
+
+        return response()->json(['message' => 'Email sent successfully']);
     }
 
 }

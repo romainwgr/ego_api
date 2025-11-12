@@ -1,5 +1,5 @@
 <?php
-
+//Pas utilisé encore
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +13,7 @@ class Member extends Model
     protected $fillable = [
         'item_id',
         'name',
+        'locator',//website
         'latitude',
         'longitude',
         'description',

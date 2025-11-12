@@ -5,7 +5,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use App\Mail\contactUserMail;
+//ContactUserMail
+use App\Mail\ContactUserMail;
 USE Illuminate\Support\Facades\Mail;
 // TODO Gérer la pagination (optionnel)
 // TODO Recherche selon le mail, username, nom, prénom, institut, etc.

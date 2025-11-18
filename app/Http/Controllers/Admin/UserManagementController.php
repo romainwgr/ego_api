@@ -32,10 +32,11 @@ class UserManagementController extends Controller
         $pendingRequests = User::where('status', 'pending')
             ->with(['egoMember'])
             ->get();
-
+        $pendingRequestsTotal = $pendingRequests->count();
         return response()->json([
             'message' => 'Pending requests retrieved successfully',
-            'data' => $pendingRequests
+            'data' => $pendingRequests,
+            'total'=> $pendingRequestsTotal,
         ]);
     }
     /**
@@ -96,6 +97,7 @@ class UserManagementController extends Controller
     public function getAllUsers(Request $request)
     {
         $users = User::with('egoMember')->get();
+        $totalUsers = $users->count();
 
         if ($users->isEmpty()) {
             return response()->json(['message' => 'No users found'], 404);
@@ -103,7 +105,8 @@ class UserManagementController extends Controller
 
         return response()->json([
             'message' => 'All users retrieved successfully',
-            'data' => $users
+            'data' => $users,
+            'total'=> $totalUsers,
         ]);
     }
     /**
@@ -159,9 +162,12 @@ class UserManagementController extends Controller
             ->with(['egoMember'])
             ->get();
 
+        $bannedUsersCount = $bannedUsers->count();
+
         return response()->json([
             'message' => 'Banned users retrieved successfully',
-            'data' => $bannedUsers
+            'data' => $bannedUsers,
+            'total' => $bannedUsersCount,
         ]);
     }
     public function unbanUser(Request $request, $id)
@@ -187,10 +193,13 @@ class UserManagementController extends Controller
         $rejectedUsers = User::where('status', 'rejected')
             ->with(['egoMember'])
             ->get();
+
+        $rejectedUsersTotal = $rejectedUsers->count();
         //gestion de la liste vide dans le frontend
         return response()->json([
             'message' => 'Rejected users retrieved successfully',
-            'data' => $rejectedUsers
+            'data' => $rejectedUsers,
+            'total' => $rejectedUsersTotal,
         ]);
     }
     // Récupère les utilisateurs étant dans le même institut que l'utilisateur connecté
@@ -201,17 +210,21 @@ class UserManagementController extends Controller
             ->where('id', '!=', $user->id)
             ->with(['egoMember'])
             ->get();
+        $myInstituteUsersWithoutMeTotal = $myInstituteUsersWithoutMe->count();
         return response()->json([
             'message' => 'Users from my institute retrieved successfully',
-            'data'=> $myInstituteUsersWithoutMe
+            'data'=> $myInstituteUsersWithoutMe,
+            'total' => $myInstituteUsersWithoutMeTotal
         ]);
     }
     public function getUncompletedUsers(Request $request){
         
         $uncompletedUsers = User::where('status', 'uncompleted')->get();
+        $uncompletedUsersTotal = $uncompletedUsers->count();
         return response()->json([
             'message' => 'Uncompleted users retrieved successfully',
-            'data' => $uncompletedUsers
+            'data' => $uncompletedUsers,
+            'total' => $uncompletedUsersTotal,
         ]);
     }
     public function contactUser(Request $request, $id){

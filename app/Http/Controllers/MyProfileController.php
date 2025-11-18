@@ -58,7 +58,7 @@ class MyProfileController extends Controller
             ]
         ]);
     }
-    
+
     public function updateProfile(Request $request)
     {
         
@@ -91,18 +91,20 @@ class MyProfileController extends Controller
     }
     protected function validateProfileData(Request $request, User $user): array
     {
+        $table = $user->getTable();
+
         return $request->validate([
             'username' => [
                 'nullable',
                 'string',
                 'max:255',
-                Rule::unique('users', 'username')->ignore($user->id),
+                Rule::unique($table, 'username')->ignore($user->id),
             ],
             'email' => [
                 'nullable',
                 'email',
                 'max:255',
-                Rule::unique('users', 'email')->ignore($user->id),
+                Rule::unique($table, 'email')->ignore($user->id),
             ],
             'ego_member_id' => [
                 'nullable',

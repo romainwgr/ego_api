@@ -10,54 +10,45 @@ use Illuminate\Validation\Rule;
 class MyProfileController extends Controller
 {
     public function index(Request $request)
-    {
-        // Récupère l'utilisateur authentifié avec le middleware auth.jwt
-        $user = $request->get('auth_user');
+{
+    $user = $request->get('auth_user');
 
-        // Charge la relation si nécessaire
-        $user->loadMissing(['egoMember:item_id,name']);
+    $user->loadMissing(['egoMember:item_id,name']);
 
-        // Par défaut
-        $egoMemberObj   = $user->egoMember; // Model|null
-        $egoMemberChoices = null;
+    $egoMemberObj = $user->egoMember;
 
-        // Si pas d'ego_member, on propose la liste pour sélection
-        if (!$egoMemberObj) {
-            $egoMemberChoices = EgoMember::orderBy('name')->get(['item_id', 'name'])->toArray();
-        }
+    // 🔹 Toujours charger la liste complète
+    $egoMemberChoices = EgoMember::orderBy('name')
+        ->get(['item_id', 'name'])
+        ->toArray();
 
+    return response()->json([
+        'success' => true,
+        'user' => [
+            'id'       => $user->id,
+            'username' => $user->username,
+            'first_name' => $user->first_name,
+            'last_name'  => $user->last_name,
+            'email'    => $user->email,
+            'professional_email' => $user->professional_email,
+            'orcid'    => $user->orcid,
+            'user_institute' => $user->userInstitute,
+            'motivation' => $user->motivation,
+            'role'     => $user->role,
+            'status'   => $user->status,
+            'ego_membership' => $user->ego_membership,
 
-        return response()->json([
-            'success' => true,
-            'user' => [
-                'id'       => $user->id,
-                'username' => $user->username,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email'    => $user->email,
-                'professional_email' => $user->professional_email,
-                'orcid'    => $user->orcid,
-                'user_institute' => $user->userInstitute,
-                'motivation' => $user->motivation,
-                'role'     => $user->role, // 'admin' || 'user' Pour l'affichage conditionnel des routes
-                'status'   => $user->status,
-                'ego_membership' => $user->ego_membership,
-                
+            'ego_member_id' => $user->ego_member_id,
 
-                // FK brute (int|null)
-                'ego_member_id'      => $user->ego_member_id,
+            'ego_member' => $egoMemberObj ? [
+                'item_id' => $egoMemberObj->item_id,
+                'name'    => $egoMemberObj->name,
+            ] : null,
+            'ego_member_choices' => $egoMemberChoices,
+        ],
+    ]);
+}
 
-                // Objet du member lié (toujours le même type)
-                'ego_member' => $egoMemberObj ? [
-                    'item_id' => $egoMemberObj->item_id,
-                    'name'    => $egoMemberObj->name,
-                ] : null,
-
-                // Liste des choix uniquement si non lié (toujours une liste ou null)
-                'ego_member_choices' => $egoMemberChoices,
-            ]
-        ]);
-    }
 
     public function updateProfile(Request $request)
     {

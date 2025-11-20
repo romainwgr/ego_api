@@ -61,7 +61,11 @@ Route::middleware('auth.jwt')->group(function () {
     // ainsi que son rôle du jwt ('admin' || 'user') pour l'affichage conditionnel protégées par auth.admin
     // Pour avoir accès aux routes d'administration s'il est admin 
     Route::get('/my-profile', [MyProfileController::class, 'index']);
+});
+//Route pour modifier son profil, il doit etre validé
+Route::middleware('auth.validated')->group(function(){
     Route::post('/my-profile', [MyProfileController::class, 'updateProfile']);
+
 });
 Route::get('/embed/form/deploiement', [DeploiementFormulaireController::class, 'genererFormulaireHtml'])->middleware('allow-framing');
 // Routes réservées à l'admin

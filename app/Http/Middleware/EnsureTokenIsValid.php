@@ -42,12 +42,7 @@ class EnsureTokenIsValid
             return response()->json(['error' => 'User not found'], 401);
         }
 
-        // 4) (Option) vérifier statut/bannissement ici si nécessaire
-        // if ($user->status === 'banned') {
-        //     return response()->json(['error' => 'Account banned'], 403);
-        // }
-
-        // 5) Attacher l’utilisateur à la requête et au système d’auth
+        // 4) Attacher l’utilisateur à la requête et au système d’auth
         // - accessible via request()->get('auth_user')
         $request->attributes->set('auth_user', $user);
 

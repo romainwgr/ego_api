@@ -92,36 +92,36 @@ class LoginController extends Controller
 
 
     protected function authenticate(User $user, string $plain)
-{
-    $this->lazyRehash($user, $plain);
+    {
+        $this->lazyRehash($user, $plain);
 
-    $jwt = $this->jwtService->createTokenForUser($user);
+        $jwt = $this->jwtService->createTokenForUser($user);
 
-    $secret  = Str::random(64);       // jamais stocké en clair côté serveur
-    $tokenId = (string) Str::uuid();  // identifiant public
+        $secret  = Str::random(64);       // jamais stocké en clair côté serveur
+        $tokenId = (string) Str::uuid();  // identifiant public
 
-    RefreshToken::create([
-        'user_id'    => $user->id,
-        'token_id'   => $tokenId,
-        'token_hash' => Hash::make($secret),
-        'expires_at' => Carbon::now()->addDays((int) env('REFRESH_TTL_DAYS', 7)),
-        'user_agent' => request()->userAgent(),
-        'ip'         => request()->ip(),
-    ]);
+        RefreshToken::create([
+            'user_id'    => $user->id,
+            'token_id'   => $tokenId,
+            'token_hash' => Hash::make($secret),
+            'expires_at' => Carbon::now()->addDays((int) env('REFRESH_TTL_DAYS', 7)),
+            'user_agent' => request()->userAgent(),
+            'ip'         => request()->ip(),
+        ]);
 
-    // Réponse : JWT dans le body, refresh en HEADER
-    return response()
-        ->json([
-            'success' => true,
-            'jwt'     => $jwt,
-            'user'    => [
-                'id'       => $user->id,
-                'username' => $user->username,
-                'email'    => $user->email,
-            ],
-        ])
-        ->header('X-Refresh-Token', $tokenId . '.' . $secret);
-    
+        // Réponse : JWT dans le body, refresh en HEADER
+        return response()
+            ->json([
+                'success' => true,
+                'jwt'     => $jwt,
+                'user'    => [
+                    'id'       => $user->id,
+                    'username' => $user->username,
+                    'email'    => $user->email,
+                ],
+            ])
+            ->header('X-Refresh-Token', $tokenId . '.' . $secret);
+        
     }
 
 

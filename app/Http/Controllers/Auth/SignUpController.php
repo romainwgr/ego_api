@@ -28,39 +28,31 @@ class SignUpController extends Controller
     $user = User::create([
         'email'         => $data['email'],
         'password'      => Hash::make($data['password']),
-        'password_algo' => config('hashing.driver'), // utile si tu veux la logique lazyRehash
+        'password_algo' => config('hashing.driver'), 
     ]);
 
-    // // 3. Génération du JWT
+    $jwt = $this->jwtService->createTokenForUser($user);
 
+    $secret  = Str::random(64);       
+    $tokenId = (string) Str::uuid();  
 
-    //Fix la génération du JWT est lors de la connexion, pas à l'inscription
-
-
-
-    // $jwt = $jwtService->createTokenForUser($user);
-
-    // $cookie = cookie(
-    //     'jwt_token',
-    //     $jwt,
-    //     60,
-    //     '/',
-    //     '.ego-network.com',
-    //     true,
-    //     true,
-    //     false,
-    //     'Lax'
-    // );
-
+    RefreshToken::create([
+        'user_id'    => $user->id,
+        'token_id'   => $tokenId,
+        'token_hash' => Hash::make($secret),
+        'expires_at' => Carbon::now()->addDays((int) env('REFRESH_TTL_DAYS', 7)),
+        'user_agent' => request()->userAgent(),
+        'ip'         => request()->ip(),
+    ]);
     // 4. Réponse
     return response()->json([
         'success' => true,
+        'jwt'     => $jwt,
         'user' => [
             'id'    => $user->id,
             'email' => $user->email,
         ]
-        ]);
-    // ->cookie($cookie);
+    ])->header('X-Refresh-Token', $tokenId . '.' . $secret);
 }
 
 

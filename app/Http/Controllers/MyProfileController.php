@@ -11,7 +11,7 @@ class MyProfileController extends Controller
 {
     public function index(Request $request)
 {
-    $user = $request->get('auth_user');
+    $user = $request->user(); 
 
     $user->loadMissing(['egoMember:item_id,name']);
 

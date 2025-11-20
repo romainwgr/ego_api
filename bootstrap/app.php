@@ -12,7 +12,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
-
+use App\Htpp\Middleware\EnsureAccountStatusIsValidated;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -29,11 +29,18 @@ return Application::configure(basePath: dirname(__DIR__))
             SubstituteBindings::class,
             EnsureTokenIsValid::class, // ✅ JWT only
         ]);
+        $middleware->group('auth.validated',[
+            ThrottleRequests::class . ':api',
+            SubstituteBindings::class,
+            EnsureTokenIsValid::class,
+            EnsureAccountStatusIsValidated::class, // ✅ JWT + user status validated
+        ]);
         $middleware->group('auth.admin', [
             ThrottleRequests::class . ':api',
             SubstituteBindings::class,
             EnsureTokenIsValid::class,
-            AdminMiddleware::class, // ✅ JWT + admin
+            EnsureAccountStatusIsValidated::class,
+            AdminMiddleware::class, // ✅ JWT + user status validated + admin
         ]);
 
 

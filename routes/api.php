@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\EnsureAccountStatusIsValidated;
 use App\Http\Controllers\Auth\OidcController;
 use App\Http\Controllers\EgoMemberController;
 use App\Models\EgoGlider;
@@ -61,6 +62,7 @@ Route::middleware('auth.jwt')->group(function () {
     // ainsi que son rôle du jwt ('admin' || 'user') pour l'affichage conditionnel protégées par auth.admin
     // Pour avoir accès aux routes d'administration s'il est admin 
     Route::get('/my-profile', [MyProfileController::class, 'index']);
+    Route::post('my-profile/complete', [MyProfileController::class, 'completeProfile']);
 });
 //Route pour modifier son profil, il doit etre validé
 Route::middleware('auth.validated')->group(function(){

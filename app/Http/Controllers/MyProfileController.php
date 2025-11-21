@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use App\Models\EgoMemberRequest;
+
 
 class MyProfileController extends Controller
 {
@@ -48,6 +50,60 @@ class MyProfileController extends Controller
         ],
     ]);
 }
+    public function completeProfile(Request $request)
+{
+    $user = $request->user();
+
+    $data = $this->validateCompleteProfileData($request, $user);
+
+    $data = $this->normalizeCompleteProfileData($data);
+
+    $attributes = $this->buildCompleteProfileAttributes($data);
+
+    if (! empty($attributes)) {
+        $user->update($attributes);
+    }
+    // 4) Gestion de l'organisation / request
+    // Cas 1 : ego_member existant (l'utilisateur a choisi dans la liste)
+    if (!empty($data['ego_member_id'])) {
+        EgoMemberRequest::firstOrCreate(
+            [
+                'user_id'       => $user->id,
+                'ego_member_id' => $data['ego_member_id'],
+                'website'       => $data['institute_website'] ?? null,
+            ],
+            [
+                'organization_name' => $data['organization_name'] ?? null,
+                'status'            => 'pending',
+            ]
+        );
+    }
+    // Cas 2 : nouvelle organisation (pas d'ego_member_id)
+    else {
+        EgoMemberRequest::create([
+            'user_id'           => $user->id,
+            'ego_member_id'     => null,
+            'organization_name' => $data['organization_name'] ?? null,
+            'website'           => $data['institute_website'] ?? null,
+            'status'            => 'pending',
+        ]);
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Profile completed successfully.',
+        'user' => [
+            'first_name'     => $user->first_name,
+            'last_name'      => $user->last_name,
+            'username'       => $user->username,
+            'professional_email'          => $user->professional_email,
+            'ego_member_id'  => $user->ego_member_id,
+            'orcid'          => $user->orcid,
+            'newsletter'     => (bool) $user->newsletter,
+            'motivation'     => $user->motivation,
+        ],
+    ]);
+}
 
 
     public function updateProfile(Request $request)
@@ -80,6 +136,7 @@ class MyProfileController extends Controller
             ],
         ]);
     }
+
     protected function validateProfileData(Request $request, User $user): array
     {
         $table = $user->getTable();
@@ -109,6 +166,112 @@ class MyProfileController extends Controller
             ],
         ]);
     }
+    protected function validateCompleteProfileData(Request $request, User $user): array
+{
+    $table = $user->getTable();
+
+    return $request->validate([
+        'first_name' => [
+            'required',
+            'string',
+            'max:255',
+        ],
+        'last_name' => [
+            'required',
+            'string',
+            'max:255',
+        ],
+        'username' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique($table, 'username')->ignore($user->id),
+        ],
+        
+        'professional_email' => [
+            'required',
+            'email',
+            'max:255',
+            Rule::unique($table, 'professional_email')->ignore($user->id),
+        ],
+        'ego_member_id' => [
+            'nullable',
+            'integer',
+            'exists:ego_members,item_id',
+        ],
+
+        // Cas nouvelle orga : nom obligatoire si pas d'ego_member_id
+        'organization_name' => [
+            'required_without:ego_member_id',
+            'nullable',
+            'string',
+            'max:255',
+        ],
+
+        // Website obligatoire si organisation_name présent
+        'institute_website' => [
+            'required_with:organization_name',
+            'nullable',
+            'url',
+            'max:255',
+        ],
+        'orcid' => [
+            'nullable',
+            'string',
+            'max:255',
+        ],
+        'newsletter' => [
+            'nullable',
+            'boolean',
+        ],
+        'motivation' => [
+            'required',
+            'string',
+            'max:500',
+        ],
+    ]);
+}
+protected function normalizeCompleteProfileData(array $data): array
+{
+    // Champs texte qui peuvent devenir null si vides
+    foreach (['first_name', 'last_name', 'username', 'professional_email', 'orcid', 'institute_website','organization_name', 'motivation'] as $field) {
+        if (array_key_exists($field, $data) && $data[$field] === '') {
+            $data[$field] = null;
+        }
+    }
+
+    // Newsletter -> bool
+    if (array_key_exists('newsletter', $data)) {
+        $data['newsletter'] = filter_var($data['newsletter'], FILTER_VALIDATE_BOOLEAN);
+    }
+
+    return $data;
+}
+protected function buildCompleteProfileAttributes(array $data): array
+{
+    $fields = [
+        'first_name',
+        'last_name',
+        'username',
+        'professional_email',
+        'ego_member_id',
+        'orcid',
+        'newsletter',
+        'motivation',
+    ];
+
+    $attributes = [];
+
+    foreach ($fields as $field) {
+        if (array_key_exists($field, $data)) {
+            $attributes[$field] = $data[$field];
+        }
+    }
+
+    return $attributes;
+}
+
+
     protected function normalizeProfileData(array $data): array
     {
         foreach (['username', 'email', 'ego_member_id', 'motivation'] as $field) {

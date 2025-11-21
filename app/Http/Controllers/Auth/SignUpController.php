@@ -31,7 +31,8 @@ class SignUpController extends Controller
         'password_algo' => config('hashing.driver'), 
     ]);
 
-    $jwt = $this->jwtService->createTokenForUser($user);
+    $jwt = $jwtService->createTokenForUser($user);
+
 
     $secret  = Str::random(64);       
     $tokenId = (string) Str::uuid();  

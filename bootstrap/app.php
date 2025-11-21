@@ -12,7 +12,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\AdminMiddleware;
-use App\Htpp\Middleware\EnsureAccountStatusIsValidated;
+use App\Http\Middleware\EnsureAccountStatusIsValidated;
 
 
 return Application::configure(basePath: dirname(__DIR__))

@@ -88,6 +88,10 @@ class MyProfileController extends Controller
             'status'            => 'pending',
         ]);
     }
+    if (in_array($user->status, ['uncompleted', 'rejected'], true)) {
+        $user->status = 'pending';
+        $user->save(); 
+    }
 
     return response()->json([
         'success' => true,
@@ -101,6 +105,7 @@ class MyProfileController extends Controller
             'orcid'          => $user->orcid,
             'newsletter'     => (bool) $user->newsletter,
             'motivation'     => $user->motivation,
+            'status'         => $user->status,
         ],
     ]);
 }

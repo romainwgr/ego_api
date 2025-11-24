@@ -64,22 +64,8 @@ class MyProfileController extends Controller
         $user->update($attributes);
     }
     // 4) Gestion de l'organisation / request
-    // Cas 1 : ego_member existant (l'utilisateur a choisi dans la liste)
-    if (!empty($data['ego_member_id'])) {
-        EgoMemberRequest::firstOrCreate(
-            [
-                'user_id'       => $user->id,
-                'ego_member_id' => $data['ego_member_id'],
-                'website'       => $data['institute_website'] ?? null,
-            ],
-            [
-                'organization_name' => $data['organization_name'] ?? null,
-                'status'            => 'pending',
-            ]
-        );
-    }
     // Cas 2 : nouvelle organisation (pas d'ego_member_id)
-    else {
+    if (empty($data['ego_member_id'])) {
         EgoMemberRequest::create([
             'user_id'           => $user->id,
             'ego_member_id'     => null,

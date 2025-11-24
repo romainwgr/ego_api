@@ -130,7 +130,7 @@ Route::get('/ego-member', [\App\Http\Controllers\EgoMemberController::class, 'ge
 Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);
 
 Route::post('/inscription', [RegisterFormulaireController::class, 'traiterFormulaireAjax']);
-Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
+// Route::get('/embed/form', [RegisterFormulaireController::class, 'genererFormulaireHtmlV3']);
 // dans web.php
 
 

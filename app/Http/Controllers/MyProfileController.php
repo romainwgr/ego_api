@@ -148,19 +148,19 @@ class MyProfileController extends Controller
 
         return $request->validate([
             'username' => [
-                'nullable',
+                'required',
                 'string',
                 'max:255',
                 Rule::unique($table, 'username')->ignore($user->id),
             ],
             'email' => [
-                'nullable',
+                'required',
                 'email',
                 'max:255',
                 Rule::unique($table, 'email')->ignore($user->id),
             ],
             'ego_member_id' => [
-                'nullable',
+                'required',
                 'integer',
                 'exists:ego_members,item_id',
             ],
@@ -222,8 +222,7 @@ class MyProfileController extends Controller
         ],
         'orcid' => [
             'nullable',
-            'string',
-            'max:255',
+            'regex:/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/',
         ],
         'newsletter' => [
             'nullable',

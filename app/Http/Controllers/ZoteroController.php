@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\ZoteroItem;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use App\Services\ZoteroSyncService;
+
 
 class ZoteroController extends Controller
 {
@@ -74,38 +76,15 @@ class ZoteroController extends Controller
     }
 
 
-
-    // public function perYear()
-    // {
-    //     $data = ZoteroItem::select(
-    //             DB::raw('date as year'),
-    //             DB::raw('COUNT(*) as count')
-    //         )
-    //         ->whereNotNull('date')
-    //         ->groupBy('year')
-    //         ->orderBy('year', 'asc')
-    //         ->get();
-
-    //     return response()->json($data);
-    // }
-
-public function perYear()
-{
-    $data = ZoteroItem::select('date as year')
-        ->selectRaw('COUNT(*) as count')
-        ->whereNotNull('date')
-        ->groupBy('date')
-        ->orderBy('date', 'asc')
-        ->get();
-
-    return response()->json($data);
-}
-
-
-
-    public function count()
+    public function perYear()
     {
-        $count = ZoteroItem::count();
-        return response()->json(['total' => $count]);
+        $data = ZoteroItem::select('date as year')
+            ->selectRaw('COUNT(*) as count')
+            ->whereNotNull('date')
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
+
+        return response()->json($data);
     }
 }

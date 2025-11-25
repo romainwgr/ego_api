@@ -22,6 +22,8 @@ use App\Models\EgoGlider;
 use App\Http\Controllers\RegisterFormulaireController;
 use App\Http\Controllers\DeploiementFormulaireController;
 use App\Http\Controllers\EgoMemberTableauController; 
+use Illuminate\Support\Facades\Artisan;
+
 
 use App\Http\Controllers\GlobalRegionController;
 use App\Http\Controllers\GlobalRegionTableController;
@@ -114,13 +116,20 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/contact-user/{id}',[
         UserManagementController::class, 'contactUser'
     ]);
+    Route::get('/admin/zotero/sync',  function () {
+    Artisan::call('zotero:sync-items');
+
+    return response()->json([
+        'logs' => Artisan::output(),
+    ]);});
+
+
 
 });
     
 // Zotero
 Route::get('/zotero', [\App\Http\Controllers\ZoteroController::class, 'index'])->name('zotero.index');
 Route::get('/publications-per-year', [\App\Http\Controllers\ZoteroController::class, 'perYear']);
-Route::get('/zotero-total', [\App\Http\Controllers\ZoteroController::class, 'count']);
 
 
 // Tableau ego member

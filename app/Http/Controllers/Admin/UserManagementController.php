@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 //ContactUserMail
 use App\Mail\ContactUserMail;
-USE Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail;
 // TODO Gérer la pagination (optionnel)
 // TODO Recherche selon le mail, username, nom, prénom, institut, etc.
 // TODO Trier selon le statut, le role, l'institut etc.

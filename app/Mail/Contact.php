@@ -3,13 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
-class ContactUserMail extends Mailable
+class Contact extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,8 +20,8 @@ class ContactUserMail extends Mailable
         public string $bodyMessage,
         public ?string $subjectLine = null
     )
-    {}
-    
+    {
+    }
 
     /**
      * Get the message envelope.
@@ -33,20 +33,23 @@ class ContactUserMail extends Mailable
         );
     }
 
-    public function attachments(): array
-    {
-        return [];
-    }
-
-
     /**
      * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact-user-plain',
+            view: 'emails.contact',
         );
     }
 
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
+    }
 }

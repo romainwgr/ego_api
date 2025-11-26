@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactUserMail;
 use Illuminate\Support\Facades\Mail;
-// TODO Gérer la pagination (optionnel)
-// TODO Recherche selon le mail, username, nom, prénom, institut, etc.
-// TODO Trier selon le statut, le role, l'institut etc.
-// TODO Envoyer des emails automatisés
-// TODO Ajouter des fonctionnalités groupées pour les utilisateurs (par exemple, validation en masse, bannissement en masse, etc.)
 /**
  * UserManagementController handles user management tasks for administrators.
  */

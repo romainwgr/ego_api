@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Mail;
 // TODO Trier selon le statut, le role, l'institut etc.
 // TODO Envoyer des emails automatisés
 // TODO Ajouter des fonctionnalités groupées pour les utilisateurs (par exemple, validation en masse, bannissement en masse, etc.)
-// TODO Ajouter des fonctionnalités avancées sur les statisiques des utilisateurs (nombre d'utilisateurs, nombre de demandes en attente, etc.)
-// TODO Modifier les rôles des utilisateurs (admin, user, etc.)
-// TODO Bannir un utilisateur et le débannir
 /**
  * UserManagementController handles user management tasks for administrators.
  */
@@ -220,20 +217,19 @@ class UserManagementController extends Controller
         ]);
     }
     public function contactUser(Request $request, $id){
-        $user = User::find($id);
+    $user = User::find($id);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        Mail::to($user->email)->send(
-            new ContactUserMail(
-                $request->input('message'),
-                $request->input('subject')
-            )
-        );
-
-        return response()->json(['message' => 'Email sent successfully']);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+    return response()->json([
+        'message' => 'Route ok',
+        'email'   => $user->email,
+        'subject' => $request->input('subject'),
+        'body'    => $request->input('message'),
+    ]);
+}
+
 
 }

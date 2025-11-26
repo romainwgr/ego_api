@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\ContactUserMail;
-use Illuminate\Support\Facades\Mail;
+// use App\Mail\Contact;
+// use Illuminate\Support\Facades\Mail;
 /**
  * UserManagementController handles user management tasks for administrators.
  */
@@ -211,21 +211,21 @@ class UserManagementController extends Controller
             'total' => $uncompletedUsersTotal,
         ]);
     }
-    public function contactUser(Request $request, $id){
-        $user = User::find($id);
+    // public function contactUser(Request $request, $id){
+    //     $user = User::find($id);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+    //     if (!$user) {
+    //         return response()->json(['message' => 'User not found'], 404);
+    //     }
 
-        Mail::to($user->email)->send(
-            new ContactUserMail(
-                $request->input('message'),
-                $request->input('subject')
-            )
-        );
+    //     Mail::to($user->email)->send(
+    //         new ContactUserMail(
+    //             $request->input('message'),
+    //             $request->input('subject')
+    //         )
+    //     );
 
-        return response()->json(['message' => 'Email sent successfully']);
-    }
+    //     return response()->json(['message' => 'Email sent successfully']);
+    // }
 
 }

@@ -28,6 +28,7 @@ use App\Http\Controllers\GlobalRegionTableController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ApiIndexController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,7 +115,7 @@ Route::middleware('auth.admin')->group(function () {
         UserManagementController::class, 'getMyInstituteUsers'
     ]);
     Route::post('/admin/contact-user/{id}',[
-        UserManagementController::class, 'contactUser'
+        ContactController::class, 'contactUser'
     ]);
 });
     

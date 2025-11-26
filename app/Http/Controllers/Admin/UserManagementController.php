@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
-//ContactUserMail
 use App\Mail\ContactUserMail;
 use Illuminate\Support\Facades\Mail;
 // TODO Gérer la pagination (optionnel)
@@ -57,7 +55,6 @@ class UserManagementController extends Controller
         $user->status = 'validated'; 
         $user->save();
 
-        Log::info("User {$user->id} validated by admin.");
         // TODO // Send email to user about approval
         return response()->json([
             'message' => 'User request validated successfully',
@@ -80,8 +77,6 @@ class UserManagementController extends Controller
 
         $user->status = 'rejected'; 
         $user->save();
-
-        Log::info("User {$user->id} rejected by admin.");
 
         return response()->json([
             'message' => 'User request rejected successfully',
@@ -149,8 +144,6 @@ class UserManagementController extends Controller
         $user->status = 'banned'; 
         $user->save();
 
-        Log::info("User {$user->id} banned by admin.");
-
         return response()->json([
             'message' => 'User banned successfully',
             'data' => $user
@@ -181,7 +174,6 @@ class UserManagementController extends Controller
         $user->status = 'validated'; 
         $user->save();
 
-        Log::info("User {$user->id} unbanned by admin.");
 
         return response()->json([
             'message' => 'User unbanned successfully',

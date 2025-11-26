@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\ZoteroController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Middleware\EnsureTokenIsValid;
@@ -28,6 +27,8 @@ use App\Http\Controllers\GlobalRegionController;
 use App\Http\Controllers\GlobalRegionTableController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ApiIndexController;
+use App\Http\Controllers\Admin\UserManagementController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

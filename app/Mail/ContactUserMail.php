@@ -33,14 +33,19 @@ class ContactUserMail extends Mailable
         );
     }
 
+    public function attachments(): array
+    {
+        return [];
+    }
+
+
     /**
      * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            text: 'emails.contact-user-plain',
-            with: ['bodyMessage' => $this->bodyMessage],
+            view: 'emails.contact-user-plain',
         );
     }
 

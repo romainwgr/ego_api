@@ -94,9 +94,16 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/get-user-info', [
         UserManagementController::class, 'getUserById'
     ]);
-    Route::post('/admin/ban-user/{id}', [
-        UserManagementController::class, 'banUser'
-    ]);
+    // Route::post('/admin/ban-user/{id}', [
+    //     UserManagementController::class, 'banUser'
+    // ]);
+    Route::post('/admin/ban-user/{id}', function ($id) {
+        return response()->json([
+            'message' => 'ban-user route OK (closure)',
+            'id' => $id,
+        ], 200);
+    });
+
     Route::post('/admin/unban-user/{id}', [
         UserManagementController::class, 'unbanUser'
     ]);

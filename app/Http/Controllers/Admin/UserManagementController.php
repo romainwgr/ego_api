@@ -139,14 +139,18 @@ class UserManagementController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function banUser(Request $request, $id)
-    {
+{
+    try {
+        Log::info("banUser called", ['id' => $id]);
+
         $user = User::find($id);
 
         if (!$user) {
+            Log::warning("User not found in banUser", ['id' => $id]);
             return response()->json(['message' => 'User not found'], 404);
         }
 
-        $user->status = 'banned'; 
+        $user->status = 'banned';
         $user->save();
 
         Log::info("User {$user->id} banned by admin.");
@@ -155,7 +159,19 @@ class UserManagementController extends Controller
             'message' => 'User banned successfully',
             'data' => $user
         ]);
+    } catch (\Throwable $e) {
+        Log::error('banUser failed: '.$e->getMessage(), [
+            'id'    => $id,
+            'trace' => $e->getTraceAsString(),
+        ]);
+
+        return response()->json([
+            'message' => 'Erreur interne dans banUser',
+            'error'   => $e->getMessage(),      // à désactiver en prod si besoin
+        ], 500);
     }
+}
+
     public function getBannedUsers(Request $request)
     {
         $bannedUsers = User::where('status', 'banned')           

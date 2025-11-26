@@ -45,15 +45,20 @@ class SyncZoteroItems extends Command
         do {
             try {
                 $response = Http::withHeaders([
-                    'Zotero-API-Key' => $apiKey,
-                    'Zotero-API-Version' => '3'
-                ])->get($baseUrl, [
+                    'Zotero-API-Key'   => $apiKey,
+                    'Zotero-API-Version' => '3',
+                ])
+                ->retry(3, 5000)        // jusqu’à 3 tentatives, 5s entre chaque
+                ->timeout(300)           // max 300s pour la requête complète (5 minutes)
+                ->connectTimeout(15)    // max 15s pour établir la connexion
+                ->get($baseUrl, [
                     'format' => 'json',
-                    'start' => $start,
-                    'limit' => $limit,
-                    'order' => 'dateAdded', // Pour une synchronisation plus fiable des nouveaux éléments
-                    'sort' => 'asc'
+                    'start'  => $start,
+                    'limit'  => $limit,
+                    'order'  => 'dateAdded',
+                    'sort'   => 'asc',
                 ]);
+
 
                 if ($response->failed()) {
                     $this->error("Erreur lors de la récupération des données Zotero (start: {$start}): " . $response->status() . " - " . $response->body());

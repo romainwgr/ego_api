@@ -11,7 +11,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Schedule::command(SyncZoteroItems::class)->daily();
+Schedule::command(SyncZoteroItems::class)->everyMinute();
 
 
 

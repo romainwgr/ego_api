@@ -52,15 +52,18 @@ return [
             ),
 
             // 🔽 on ajoute ça :
-            'encryption' => env('MAIL_ENCRYPTION', null),
-            'auth_mode'  => null,
-            'stream' => [
-                'ssl' => [
-                    'allow_self_signed' => true,
-                    'verify_peer'       => false,
-                    'verify_peer_name'  => false,
-                ],
-            ],
+            //'encryption' => env('MAIL_ENCRYPTION', null),
+            
+            //'auth_mode'  => null,
+            'verify_peer'       => false,
+
+            // 'stream' => [
+            //     'ssl' => [
+            //         'allow_self_signed' => true,
+            //         'verify_peer'       => false,
+            //         'verify_peer_name'  => false,
+            //     ],
+            // ],
         ],
 
 

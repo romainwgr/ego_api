@@ -28,14 +28,6 @@ class SyncZoteroItems extends Command
      */
     public function handle()
     {
-        \Log::info('Zotero sync env', [
-            'user'        => get_current_user(),
-            'cwd'         => getcwd(),
-            'http_proxy'  => getenv('http_proxy'),
-            'https_proxy' => getenv('https_proxy'),
-            'no_proxy'    => getenv('no_proxy'),
-        ]);
-
         $groupId = env('ZOTERO_GROUP_ID');
         $apiKey = env('ZOTERO_API_KEY');
 

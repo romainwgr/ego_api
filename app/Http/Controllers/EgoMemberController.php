@@ -18,19 +18,18 @@ class EgoMemberController extends Controller
     *
     */
     public function getEgoMemberTable(){
-        $members = EgoMember::select('country','attached_icon', 'name', 'edmoRecordId', 'resp_inclear', 'address')->get();
+        $members = EgoMember::select('country','attached_icon', 'name', 'edmoRecordId', 'resp_inclear', 'address')
+            ->where('request_status', 'approved') 
+            ->where('is_displayed', 1)            
+            ->get();
 
         $members->each(function ($member) {
-            
-
             if ($member->country) {
                 $code = strtolower($member->country);
-
                 $member->country = $code;
             }
-    });
+        });
         
-        // Renvoyer les données au format JSON.
         return response()->json([
             'success' => true,
             'data' => $members

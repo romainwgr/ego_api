@@ -10,7 +10,13 @@ class MemberController extends Controller
 {
     public function index()
     {
-        return response()->json(Member::all());
+        // Member::all() récupère tout sans filtre. 
+        // On remplace par where(...) -> get()
+        $members = Member::where('request_status', 'approved')
+            ->where('is_displayed', 1)
+            ->get();
+
+        return response()->json($members);
     }
 //     public function getMapData()
 //     {

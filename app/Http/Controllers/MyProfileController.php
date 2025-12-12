@@ -65,15 +65,18 @@ class MyProfileController extends Controller
     // 4) Gestion de l'organisation / request
     // Cas 2 : nouvelle organisation (pas d'ego_member_id)
     if (empty($data['ego_member_id'])) {
-        EgoMember::create([
-            'name' => $request->name,
-            'locator' => $request->locator,
+        $newMember = EgoMember::create([
+            'name' => $data['organization_name'],
+            'locator' => $data['institute_website'],
             
             'is_displayed' => 0, 
             'request_status' => 'pending',
             'when_created' => now(),
         ]);
+        $user->ego_member_id = $newMember->item_id;
+        $user->save();
     }
+    
     if (in_array($user->status, ['uncompleted', 'rejected'], true)) {
         $user->status = 'pending';
         $user->save(); 

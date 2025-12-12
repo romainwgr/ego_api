@@ -15,6 +15,8 @@ Class EgoMember extends Model{
     protected $fillable = [
         // 'item_id',
         'attached_icon',
+        'lat',  
+        'lon',
         'name',
         'name_detail',
         'resp_phpbbid',
@@ -23,12 +25,20 @@ Class EgoMember extends Model{
         'edmoRecordId',
         'resp_inclear',
         'country',
-        'is_displayed'
+        'is_displayed',
+        'request_status',
+        'locatorInstitute', 
+        'gtt_members',      
+        'tech_responsible', 
+        'gliders',          
+        'asvs',
     ];
     protected $casts = [
         'resp_phpbbid' => 'integer',
         'edmoRecordId' => 'integer',
         'is_displayed' => 'boolean',
+        'lat' => 'float', 
+        'lon' => 'float',
     ];
 
     /** Relation : un ego_member possède 0..∞ users */
@@ -53,6 +63,14 @@ Class EgoMember extends Model{
             'locator',
             'edmoRecordId',
             'country',
-        ]);
+            'lat', 
+            'lon',
+            'locatorInstitute',
+            'gtt_members',
+            'tech_responsible',
+            'gliders',
+            'asvs',
+        ])->where('is_displayed', 1)             
+          ->where('request_status', 'approved'); 
     }
 }

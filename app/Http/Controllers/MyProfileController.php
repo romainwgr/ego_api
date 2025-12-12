@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
-use App\Models\EgoMemberRequest;
 
 
 class MyProfileController extends Controller
@@ -19,7 +18,7 @@ class MyProfileController extends Controller
 
     $egoMemberObj = $user->egoMember;
 
-    // 🔹 Toujours charger la liste complète
+    // charger la liste complète
     $egoMemberChoices = EgoMember::orderBy('name')
         ->get(['item_id', 'name'])
         ->toArray();
@@ -66,12 +65,13 @@ class MyProfileController extends Controller
     // 4) Gestion de l'organisation / request
     // Cas 2 : nouvelle organisation (pas d'ego_member_id)
     if (empty($data['ego_member_id'])) {
-        EgoMemberRequest::create([
-            'user_id'           => $user->id,
-            'ego_member_id'     => null,
-            'organization_name' => $data['organization_name'] ?? null,
-            'website'           => $data['institute_website'] ?? null,
-            'status'            => 'pending',
+        EgoMember::create([
+            'name' => $request->name,
+            'locator' => $request->locator,
+            
+            'is_displayed' => 0, 
+            'request_status' => 'pending',
+            'when_created' => now(),
         ]);
     }
     if (in_array($user->status, ['uncompleted', 'rejected'], true)) {

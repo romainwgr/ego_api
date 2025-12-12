@@ -117,6 +117,10 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/contact-user/{id}',[
         ContactController::class, 'contactUser'
     ]);
+    Route::get('/admin/get-ego-member-requests',[\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberRequests']);
+    Route::post('/admin/ego-member/update', [EgoMemberController::class, 'updateInfo']);
+    Route::post('/admin/ego-member/approve', [EgoMemberController::class, 'approveRequest']);
+    Route::post('/admin/ego-member/reject', [EgoMemberController::class, 'rejectRequest']);
 });
     
 // Zotero
@@ -126,6 +130,8 @@ Route::get('/publications-per-year', [\App\Http\Controllers\ZoteroController::cl
 
 // Tableau ego member
 Route::get('/ego-member', [\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberTable']);
+
+
 // New Damien
 
 Route::get('/tableau-ego', [\App\Http\Controllers\EgoMemberTableauController::class, 'renderHtml']);

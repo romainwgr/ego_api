@@ -30,11 +30,18 @@ class AppServiceProvider extends ServiceProvider
         return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
     });
     Mail::extend('brevo', function (array $config = []) {
-            return (new BrevoTransportFactory())->create(
+            
+            $client = HttpClient::create([
+                'proxy' => 'http://proxy.ipsl.upmc.fr:3128', 
+                'timeout' => 60,
+                'max_duration' => 60,
+            ]);
+
+            return (new BrevoTransportFactory(null, $client))->create(
                 new Dsn(
-                    'brevo+api', 
+                    'brevo+api',
                     'default',
-                    $config['key'] 
+                    $config['key']
                 )
             );
         });

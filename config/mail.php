@@ -56,6 +56,9 @@ return [
 
 
         ],
+        'brevo' => [
+            'transport' => 'brevo',
+        ],
 
 
         'ses' => [

@@ -58,6 +58,7 @@ return [
         ],
         'brevo' => [
             'transport' => 'brevo',
+            'url' => env('BREVO_DSN', null),
         ],
 
 

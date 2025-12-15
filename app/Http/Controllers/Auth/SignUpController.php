@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Services\JwtService;
 use Illuminate\Support\Str;      
-use Carbon\Carbon;               
+use Carbon\Carbon;              
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeEmail;
 
 class SignUpController extends Controller
 {
@@ -32,7 +35,7 @@ class SignUpController extends Controller
             'password'      => Hash::make($data['password']),
             'password_algo' => config('hashing.driver'),
         ]);
-
+        
         // 3. Création du JWT
         $jwt = $jwtService->createTokenForUser($user);
 
@@ -48,6 +51,13 @@ class SignUpController extends Controller
             'user_agent' => request()->userAgent(),
             'ip'         => request()->ip(),
         ]);
+
+        try {
+            Mail::to($user->email)->send(new WelcomeEmail($user));
+        } catch (\Exception $e) {
+            // Optionnel : Log l'erreur pour le débogage
+            \Log::error("Error welcome mail : " . $e->getMessage());
+        }
 
         // 4. Réponse
         return response()

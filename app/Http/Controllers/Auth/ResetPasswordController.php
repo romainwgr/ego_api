@@ -30,16 +30,16 @@ class ResetPasswordController extends Controller
             $status === Password::RESET_LINK_SENT ? 200 : 422
         );
     }
-    public function redirectToReset($token)
-    {
-        $email = request()->query('email');
+    // public function redirectToReset($token)
+    // {
+    //     $email = request()->query('email');
 
-        $url = config('app.frontend_url')
-            . '/reset-password?token=' . $token
-            . '&email=' . urlencode($email);
+    //     $url = config('app.frontend_url')
+    //         . '/reset-password?token=' . $token
+    //         . '&email=' . urlencode($email);
 
-        return redirect()->away($url);
-    }
+    //     return redirect()->away($url);
+    // }
 
 
 /** POST /reset-password */

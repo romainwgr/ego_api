@@ -19,8 +19,8 @@ Route::prefix('auth')->group(function () {
 });
 
 // Redirection vers le frontend après clic sur lien e-mail de reset
-Route::get('/password/reset/{token}', [ResetPasswordController::class, 'redirectToReset'])
-    ->name('password.reset');
+// Route::get('/password/reset/{token}', [ResetPasswordController::class, 'redirectToReset'])
+//     ->name('password.reset');
 
 Route::get('/', function () {
     return response()->json([

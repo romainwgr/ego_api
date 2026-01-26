@@ -7,17 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class EgoGlider extends Model
 {
-    // Define the table associated with the model
     protected $table = 'ego_glider';
+    protected $primaryKey = 'glider_id';
+    public $timestamps = false;
 
-    // Specify the fillable attributes
-    protected $fillable = [
-        'glider_id',
-        'name',
-        'family',
-        'WMO_platform_code',
-        'no_serie',
-        'owner_id',
-        'type'
-    ];
+    public function owner()
+    {
+        return $this->belongsTo(EgoMember::class, 'owner_id', 'item_id');
+    }
 }

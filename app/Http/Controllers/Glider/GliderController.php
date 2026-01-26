@@ -19,7 +19,7 @@ class GliderController extends Controller
             return [
                 'id'            => $mission->deployment_id,
                 'glider_name'   => $mission->glider->name ?? 'N/A',
-                'mission_name'  => $mission->name,
+                'mission_name'  => $mission->name ?? "N/A",
                 
                 // C'est ICI qu'on récupère "Alseamar" via le propriétaire du Glider
                 'lab_name'      => $mission->glider->owner->name ?? 'N/A',
@@ -27,7 +27,7 @@ class GliderController extends Controller
                 'observatory'   => $mission->observatory->short_name ?? 'N/A',
                 'start_date'    => $mission->start_date ?? "N/A",
                 'end_date'      => $mission->end_date ?? "N/A",
-                'nb_dives'      => $mission->nb_dives ?? 0,
+                'nb_dives'      => $mission->nb_dives ?? "N/A",
                 'status'        => $mission->status_depl,
             ];
         });

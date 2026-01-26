@@ -16,4 +16,6 @@ class EgoObservatory extends Model
         'name',
         
     ];
+    protected $primaryKey = 'item_id';
+    public $timestamps = false;
 }

@@ -29,6 +29,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ApiIndexController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Glider\GliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,3 +156,5 @@ Route::get('/globalregiontable', [GlobalRegionTableController::class, 'index'])-
 Route::get('/', [ApiIndexController::class, 'index']);
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/getprojects',[ProjectController::class, 'getProjects'])->name('projects.getProjects');
+
+Route::get('/gliders/deployments', [GliderController::class, 'index']);

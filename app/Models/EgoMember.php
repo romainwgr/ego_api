@@ -5,13 +5,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-Class EgoMember extends Model{
+class EgoMember extends Model
+{
     protected $table = 'ego_members';
     protected $primaryKey = 'item_id';
 
     public $timestamps = false;
 
+    
     protected $fillable = [
         // 'item_id',
         'attached_icon',

@@ -22,24 +22,24 @@ class ResetPasswordController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
-        $status = Password::sendResetLink($request->only('email'));
+        Password::sendResetLink($request->only('email'));
 
-        // Pour un front AJAX : réponse JSON neutre (toujours 200)
-        return response()->json(
-            ['message' => __($status)],
-            $status === Password::RESET_LINK_SENT ? 200 : 422
-        );
+        // Pour des raisons de sécurité, on ne révèle jamais si l'email existe ou non dans la base de données.
+        // On retourne donc toujours une réponse 200 avec un message générique.
+        return response()->json([
+            'message' => "Si un compte est associé à cet email, un lien de réinitialisation a été envoyé."
+        ], 200);
     }
-    // public function redirectToReset($token)
-    // {
-    //     $email = request()->query('email');
+    public function redirectToReset($token)
+    {
+        $email = request()->query('email');
 
-    //     $url = config('app.frontend_url')
-    //         . '/reset-password?token=' . $token
-    //         . '&email=' . urlencode($email);
+        $url = config('app.frontend_url')
+            . '/reset-password?token=' . $token
+            . '&email=' . urlencode($email);
 
-    //     return redirect()->away($url);
-    // }
+        return redirect()->away($url);
+    }
 
 
 /** POST /reset-password */

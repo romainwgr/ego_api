@@ -12,6 +12,9 @@ class GliderController extends Controller
     {
         // 1. Récupération des données avec les relations (Optimisation SQL)
         $deployments = EgoDeploiement::with(['glider.owner', 'observatory'])
+            ->whereHas('glider', function ($query) {
+                $query->whereNotNull('name')->where('name', '!=', '');
+            })
             ->orderBy('deployment_id', 'desc') // Les plus récents en premier
             ->get();
 
@@ -33,9 +36,7 @@ class GliderController extends Controller
                 'json'          => $mission->gdac_json, 
                 'nc'            => $mission->gdac_nc,
             ];
-        })->filter(function ($item) {
-            return !empty($item['glider_name']);
-        })->values();
+        });
 
         // 3. Retourne la réponse JSON standard
         return response()->json([

@@ -1,0 +1,30 @@
+name: Deploy to VM
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connexion SSH et mise à jour
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+
+          # --- PASSAGE PAR LE PROXY ---
+          proxy_host: ${{ secrets.PROXY_HOST }}
+          proxy_username: ${{ secrets.PROXY_USER }}
+          proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          proxy_port: 22
+          
+          script: |
+            echo "Connecté sur la VM cible via le proxy !"
+            cd /home/egoweb/ego_api || exit 1
+            echo "Dossier trouvé, lancement du pull..."
+            git pull origin main

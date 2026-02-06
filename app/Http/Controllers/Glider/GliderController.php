@@ -19,7 +19,7 @@ class GliderController extends Controller
         $formattedData = $deployments->map(function ($mission) {
             return [
                 'id'            => $mission->deployment_id,
-                'glider_name'   => $mission->glider->name ?? 'N/A',
+                'glider_name'   => $mission->glider->name ?? null,
                 'mission_name'  => $mission->name ?? "N/A",
                 
                 'lab_name'      => $mission->glider->owner->name ?? 'N/A',
@@ -33,7 +33,9 @@ class GliderController extends Controller
                 'json'          => $mission->gdac_json, 
                 'nc'            => $mission->gdac_nc,
             ];
-        });
+        })->filter(function ($item) {
+            return !empty($item['glider_name']);
+        })->values();
 
         // 3. Retourne la réponse JSON standard
         return response()->json([

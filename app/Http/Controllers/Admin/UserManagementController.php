@@ -38,10 +38,16 @@ class UserManagementController extends Controller
      */
     public function approveRequest(Request $request, $id)
     {
-        $user = User::find($id);
+        // On charge l'utilisateur avec son institut
+        $user = User::with('egoMember')->find($id);
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Pour approuver un utilisateur, son institut DOIT être 'approved'
+        if ($user->egoMember && $user->egoMember->request_status !== 'approved') {
+            return response()->json(['message' => 'Update the user institute first'], 422); 
         }
 
         $user->status = 'validated'; 
@@ -60,11 +66,18 @@ class UserManagementController extends Controller
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function rejectRequest(Request $request, $id){
-        $user = User::find($id);
+    public function rejectRequest(Request $request, $id)
+    {
+        // On charge l'utilisateur avec son institut
+        $user = User::with('egoMember')->find($id);
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Pour rejeter un utilisateur, on s'assure que l'institut n'est plus en attente
+        if ($user->egoMember && $user->egoMember->request_status === 'pending') {
+            return response()->json(['message' => 'Please process the user institute first'], 422);
         }
 
         $user->status = 'rejected'; 

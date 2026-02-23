@@ -118,6 +118,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/contact-user/{id}',[
         ContactController::class, 'contactUser'
     ]);
+    // Route pour les ego_member (institutes)
     Route::get('/admin/get-ego-member-requests',[\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberRequests']);
     Route::post('/admin/ego-member/update', [EgoMemberController::class, 'updateInfo']);
     Route::post('/admin/ego-member/approve', [EgoMemberController::class, 'approveRequest']);

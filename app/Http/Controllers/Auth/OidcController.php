@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
@@ -115,7 +116,7 @@ public function exchange(Request $request)
         'expires_at' => Carbon::now()->addDays((int) env('REFRESH_TTL_DAYS', 7)),
         'user_agent' => $request->userAgent(),
         'ip'         => $request->ip(),
-        'revoked'    => false,
+        'revoked_at' => null,
     ]);
 
     return response()

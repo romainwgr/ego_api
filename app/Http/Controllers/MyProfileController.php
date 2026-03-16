@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserPendingNotification;
 
 
 class MyProfileController extends Controller
@@ -79,7 +81,10 @@ class MyProfileController extends Controller
     
     if (in_array($user->status, ['uncompleted', 'rejected'], true)) {
         $user->status = 'pending';
-        $user->save(); 
+        $user->save();
+        $user->loadMissing('egoMember');
+        Mail::to('contact@europeanglidercommunity.org')
+            ->send(new NewUserPendingNotification($user));
     }
 
     return response()->json([

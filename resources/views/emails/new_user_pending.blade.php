@@ -49,7 +49,7 @@
 
     <br>
     <p>
-        <a href="{{ rtrim(env('APP_FRONTEND_URL'), '/') }}"
+        <a href="{{ rtrim(env('APP_FRONTEND_URL'), '/') }}/admin-template"
            style="background-color: #1a73e8; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">
             Review request
         </a>

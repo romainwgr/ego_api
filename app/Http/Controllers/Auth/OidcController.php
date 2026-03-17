@@ -46,7 +46,7 @@ class OidcController extends Controller
 {
     try {
         $googleUser = Socialite::driver('google')
-            ->setGuzzleOptions(['proxy' => env('HTTPS_PROXY')])
+            ->setHttpClient(new \GuzzleHttp\Client(['proxy' => ['https' => env('HTTPS_PROXY'), 'http' => env('HTTPS_PROXY')]]))
             ->stateless()
             ->user();
 

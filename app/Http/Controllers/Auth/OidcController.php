@@ -53,14 +53,21 @@ class OidcController extends Controller
         $firstName = $this->extractFirstName($googleUser->getName());
         $lastName  = $this->extractLastName($googleUser->getName());
 
-        $user = User::updateOrCreate(
-            ['google_id' => $googleUser->getId()],
-            [
+        $user = User::where('google_id', $googleUser->getId())
+            ->orWhere('email', $googleUser->getEmail())
+            ->first();
+
+        if ($user) {
+            $user->google_id = $googleUser->getId();
+            $user->save();
+        } else {
+            $user = User::create([
+                'google_id'  => $googleUser->getId(),
                 'email'      => $googleUser->getEmail(),
                 'first_name' => $firstName,
                 'last_name'  => $lastName,
-            ]
-        );
+            ]);
+        }
 
         // Génère un one-time code (OTC) valable 60s
         $code = Str::random(48);

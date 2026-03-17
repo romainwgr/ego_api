@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use App\Mail\Contact;
-// use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+use App\Mail\WelcomeEmail;
 /**
  * UserManagementController handles user management tasks for administrators.
  */
@@ -50,10 +51,26 @@ class UserManagementController extends Controller
             return response()->json(['message' => 'Update the user institute first'], 422); 
         }
 
-        $user->status = 'validated'; 
+        $user->status = 'validated';
         $user->save();
 
-        // TODO // Send email to user about approval
+        Mail::to($user->email)->send(new WelcomeEmail($user));
+
+        if ($user->newsletter) {
+            try {
+                Http::withHeaders([
+                    'api-key' => env('BREVO_KEY'),
+                    'Content-Type' => 'application/json',
+                ])->post('https://api.brevo.com/v3/contacts', [
+                    'email' => $user->email,
+                    'listIds' => [10],
+                    'updateEnabled' => true,
+                ]);
+            } catch (\Exception $e) {
+                \Log::error('Brevo API error: ' . $e->getMessage());
+            }
+        }
+
         return response()->json([
             'message' => 'User request validated successfully',
             'data' => $user

@@ -41,6 +41,7 @@ class User extends Authenticatable implements CanResetPasswordContract
         'motivation',
         'ego_membership',
         'ego_member_id',
+        'newsletter',
     ];
 
     /**

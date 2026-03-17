@@ -45,7 +45,10 @@ class OidcController extends Controller
     public function callbackToGoogle(Request $request)
 {
     try {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $googleUser = Socialite::driver('google')
+            ->setGuzzleOptions(['proxy' => env('HTTPS_PROXY')])
+            ->stateless()
+            ->user();
 
         $firstName = $this->extractFirstName($googleUser->getName());
         $lastName  = $this->extractLastName($googleUser->getName());

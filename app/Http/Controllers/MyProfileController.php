@@ -40,6 +40,7 @@ class MyProfileController extends Controller
             'role'     => $user->role,
             'status'   => $user->status,
             'ego_membership' => $user->ego_membership,
+            'newsletter' => (bool) $user->newsletter,
 
             'ego_member_id' => $user->ego_member_id,
 

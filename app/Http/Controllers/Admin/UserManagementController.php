@@ -54,7 +54,11 @@ class UserManagementController extends Controller
         $user->status = 'validated';
         $user->save();
 
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        try {
+            Mail::to($user->email)->send(new WelcomeEmail($user));
+        } catch (\Exception $e) {
+            \Log::error('Error sending welcome email: ' . $e->getMessage());
+        }
 
         if ($user->newsletter) {
             try {

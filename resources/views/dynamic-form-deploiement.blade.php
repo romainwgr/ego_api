@@ -385,9 +385,9 @@ Once you have chosen the sensor, provide at least the Serial number and the last
 <script id="uuv-usv" type="application/json">
     {!! json_encode($vehicle) !!}
 </script>
-<!-- <script id="users-data" type="application/json">
+{{-- <script id="users-data" type="application/json">
     {!! json_encode($user) !!}
-</script> -->
+</script> --}}
 <script id="groupes-data" type="application/json">
     {!! json_encode($groupes) !!}
 </script>

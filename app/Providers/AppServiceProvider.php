@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function ($user, string $token) {
             
         
-            $frontendUrl = 'https://migration.ego-network.org';
-            return $frontendUrl . '/reset-password?token=' . $token . '&email=' . urlencode($user->email);
+            $frontendUrl = env('APP_FRONTEND_URL');
+            return rtrim($frontendUrl, '/') . '/reset-password?token=' . $token . '&email=' . urlencode($user->email);
         });
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());

@@ -13,6 +13,19 @@ class EgoMemberController extends Controller
     {
         return response()->json(EgoMember::all());
     }
+
+    /**
+     * Liste complète de tous les membres (tous statuts) pour l'admin.
+     */
+    public function getAllMembers()
+    {
+        $members = EgoMember::orderBy('name')->get();
+        return response()->json([
+            'success' => true,
+            'count'   => $members->count(),
+            'data'    => $members,
+        ]);
+    }
     /*
     * Fonction qui créer le tableau avec les informations sur les membres d'EGO
     *
@@ -55,29 +68,102 @@ class EgoMemberController extends Controller
     
     
     /**
-     * Action 1 : UPDATE (Brouillon)
-     * On accepte tout, même si c'est vide, pour permettre à l'admin de sauvegarder son travail en cours.
+     * Action 1 : UPDATE
+     * Mise à jour complète d'un membre existant par l'admin.
      */
     public function updateInfo(Request $request)
     {
         $validated = $request->validate([
-            'id'       => 'required|exists:ego_members,item_id',
-            'name'     => 'nullable|string|max:128',
-            'locator'  => 'nullable|url|max:256',
-            'lat'      => 'nullable|numeric',
-            'lon'      => 'nullable|numeric',
-            'country'  => 'nullable|string|max:3',
-            'address'  => 'nullable|string',
+            'id'                    => 'required|exists:ego_members,item_id',
+            'name'                  => 'nullable|string|max:255',
+            'name_detail'           => 'nullable|string|max:255',
+            'alias_name'            => 'nullable|string|max:255',
+            'attached_icon'         => 'nullable|string|max:512',
+            'address'               => 'nullable|string',
+            'country'               => 'nullable|string|max:3',
+            'edmoRecordId'          => 'nullable|integer',
+            'lat'                   => 'nullable|numeric|between:-90,90',
+            'lon'                   => 'nullable|numeric|between:-180,180',
+            'locator'               => 'nullable|url|max:512',
+            'locatorInstitute'      => 'nullable|string|max:512',
+            'resp_phpbbid'          => 'nullable|integer',
+            'resp_inclear'          => 'nullable|string|max:255',
+            'gtt_members'           => 'nullable|string|max:255',
+            'tech_responsible'      => 'nullable|string|max:255',
+            'gliders'               => 'nullable|integer|min:0',
+            'asvs'                  => 'nullable|integer|min:0',
+            'ego_gliders_count'     => 'nullable|integer|min:0',
+            'ego_deployments_count' => 'nullable|integer|min:0',
+            'eval_lab'              => 'nullable|numeric|between:0,100',
+            'eval_data'             => 'nullable|numeric|between:0,100',
+            'eval_field'            => 'nullable|numeric|between:0,100',
+            'is_displayed'          => 'nullable|boolean',
+            'request_status'        => 'nullable|in:pending,approved,rejected',
         ]);
 
-        $member = EgoMember::findOrFail($validated['id']);
-        
-        // Mise à jour (on filtre les nulls pour ne pas écraser l'existant avec du vide si non envoyé)
-        $member->fill(array_filter($validated, fn($value) => !is_null($value)));
+        $id = $validated['id'];
+        unset($validated['id']);
+
+        $member = EgoMember::findOrFail($id);
+
+        // On ne met à jour que les champs explicitement envoyés (pas les null absents)
+        $member->fill(array_filter($validated, fn($v) => !is_null($v)));
         $member->when_modified = now();
         $member->save();
 
-        return response()->json(['success' => true, 'message' => 'Data updated (Draft mode).', 'data' => $member]);
+        return response()->json(['success' => true, 'message' => 'Member updated.', 'data' => $member]);
+    }
+
+    /**
+     * Créer un nouveau membre EGO (admin uniquement).
+     * Le membre est directement approuvé et visible.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name'                  => 'required|string|max:255',
+            'name_detail'           => 'nullable|string|max:255',
+            'alias_name'            => 'nullable|string|max:255',
+            'attached_icon'         => 'nullable|string|max:512',
+            'address'               => 'nullable|string',
+            'country'               => 'required|string|max:3',
+            'edmoRecordId'          => 'nullable|integer',
+            'lat'                   => 'required|numeric|between:-90,90',
+            'lon'                   => 'required|numeric|between:-180,180',
+            'locator'               => 'nullable|url|max:512',
+            'locatorInstitute'      => 'nullable|string|max:512',
+            'resp_phpbbid'          => 'nullable|integer',
+            'resp_inclear'          => 'nullable|string|max:255',
+            'gtt_members'           => 'nullable|string|max:255',
+            'tech_responsible'      => 'nullable|string|max:255',
+            'gliders'               => 'nullable|integer|min:0',
+            'asvs'                  => 'nullable|integer|min:0',
+            'ego_gliders_count'     => 'nullable|integer|min:0',
+            'ego_deployments_count' => 'nullable|integer|min:0',
+            'eval_lab'              => 'nullable|numeric|between:0,100',
+            'eval_data'             => 'nullable|numeric|between:0,100',
+            'eval_field'            => 'nullable|numeric|between:0,100',
+        ]);
+
+        $member = EgoMember::create(array_merge($validated, [
+            'is_displayed'   => true,
+            'request_status' => 'approved',
+            'when_created'   => now(),
+            'when_modified'  => now(),
+        ]));
+
+        return response()->json(['success' => true, 'message' => 'Member created.', 'data' => $member], 201);
+    }
+
+    /**
+     * Supprimer un membre EGO (admin uniquement).
+     */
+    public function destroy(int $id)
+    {
+        $member = EgoMember::findOrFail($id);
+        $member->delete();
+
+        return response()->json(['success' => true, 'message' => 'Member deleted.']);
     }
 
     /**

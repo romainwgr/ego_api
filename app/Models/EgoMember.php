@@ -1,5 +1,4 @@
 <?php
-//attached_icon,name,name_detail,resp_phpbbid,address,locator,edmoRecordId,country where is_display = 1
 
 namespace App\Models;
 
@@ -12,34 +11,56 @@ class EgoMember extends Model
 
     public $timestamps = false;
 
-    
     protected $fillable = [
-        // 'item_id',
-        'attached_icon',
-        'lat',  
-        'lon',
+        // Identité
         'name',
-        'name_detail',
-        'resp_phpbbid',
+        'name_detail',      // utilisé dans /tableau-ego et formulaire déploiement
+        'alias_name',       // nom du nœud GROOM RI (frontend /api/members)
+        'attached_icon',    // logo
         'address',
-        'locator',
+        'country',          // code pays (ex: FR)
         'edmoRecordId',
-        'resp_inclear',
-        'country',
+
+        // Géolocalisation
+        'lat',
+        'lon',
+
+        // URLs
+        'locator',          // site web / URL nœud GROOM RI
+        'locatorInstitute', // organisation parente
+
+        // Contacts
+        'resp_phpbbid',     // id utilisateur responsable (ancien phpBB)
+        'resp_inclear',     // contact en clair
+        'gtt_members',      // contact science
+        'tech_responsible', // contact technique
+
+        // Flotte
+        'gliders',
+        'asvs',
+        'ego_gliders_count',
+        'ego_deployments_count',
+
+        // Évaluations (barres de progression dashboard)
+        'eval_lab',
+        'eval_data',
+        'eval_field',
+
+        // Statut
         'is_displayed',
         'request_status',
-        'locatorInstitute', 
-        'gtt_members',      
-        'tech_responsible', 
-        'gliders',          
-        'asvs',
     ];
+
     protected $casts = [
-        'resp_phpbbid' => 'integer',
-        'edmoRecordId' => 'integer',
-        'is_displayed' => 'boolean',
-        'lat' => 'float', 
-        'lon' => 'float',
+        'resp_phpbbid'         => 'integer',
+        'edmoRecordId'         => 'integer',
+        'is_displayed'         => 'boolean',
+        'lat'                  => 'float',
+        'lon'                  => 'float',
+        'gliders'              => 'integer',
+        'asvs'                 => 'integer',
+        'ego_gliders_count'    => 'integer',
+        'ego_deployments_count'=> 'integer',
     ];
 
     /** Relation : un ego_member possède 0..∞ users */
@@ -49,29 +70,31 @@ class EgoMember extends Model
     }
 
     /**
-     * Scope : sélection « carte » rapide
-     * (attached_icon,name,name_detail,resp_phpbbid,address,locator,edmoRecordId,country)
+     * Scope : sélection carte (membres approuvés et affichés)
      */
     public function scopeCard($query)
     {
         return $query->select([
             'item_id',
-            'attached_icon',
             'name',
-            'name_detail',
-            'resp_phpbbid',
+            'alias_name',
+            'attached_icon',
             'address',
-            'locator',
-            'edmoRecordId',
             'country',
-            'lat', 
+            'lat',
             'lon',
+            'locator',
             'locatorInstitute',
             'gtt_members',
             'tech_responsible',
             'gliders',
             'asvs',
-        ])->where('is_displayed', 1)             
-          ->where('request_status', 'approved'); 
+            'ego_gliders_count',
+            'ego_deployments_count',
+            'eval_lab',
+            'eval_data',
+            'eval_field',
+        ])->where('is_displayed', 1)
+          ->where('request_status', 'approved');
     }
 }

@@ -118,11 +118,14 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/admin/contact-user/{id}',[
         ContactController::class, 'contactUser'
     ]);
-    // Route pour les ego_member (institutes)
-    Route::get('/admin/get-ego-member-requests',[\App\Http\Controllers\EgoMemberController::class, 'getEgoMemberRequests']);
-    Route::post('/admin/ego-member/update', [EgoMemberController::class, 'updateInfo']);
-    Route::post('/admin/ego-member/approve', [EgoMemberController::class, 'approveRequest']);
-    Route::post('/admin/ego-member/reject', [EgoMemberController::class, 'rejectRequest']);
+    // Routes admin ego_member (institutes)
+    Route::get('/admin/ego-members',             [EgoMemberController::class, 'getAllMembers']);
+    Route::get('/admin/get-ego-member-requests', [EgoMemberController::class, 'getEgoMemberRequests']);
+    Route::post('/admin/ego-member',             [EgoMemberController::class, 'store']);
+    Route::post('/admin/ego-member/update',      [EgoMemberController::class, 'updateInfo']);
+    Route::delete('/admin/ego-member/{id}',      [EgoMemberController::class, 'destroy']);
+    Route::post('/admin/ego-member/approve',     [EgoMemberController::class, 'approveRequest']);
+    Route::post('/admin/ego-member/reject',      [EgoMemberController::class, 'rejectRequest']);
 });
     
 // Zotero

@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers\Glider;
 
-use App\Http\Controllers\Controller;  
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\EgoDeploiement;
 
 class GliderController extends Controller
 {
+    public function getMap(string $month)
+    {
+        if (!preg_match('/^\d{4}-\d{2}$/', $month)) {
+            return response()->json(['error' => 'Invalid month format'], 400);
+        }
+
+        foreach (['png', 'pdf'] as $ext) {
+            if (request()->query('format', 'png') !== $ext) continue;
+
+            $path = 'maps/oceangliders/' . $month . '-og-countries-v2.' . $ext;
+
+            if (!Storage::disk('public')->exists($path)) {
+                return response()->json(['error' => 'Map not available'], 404);
+            }
+
+            $mime = $ext === 'pdf' ? 'application/pdf' : 'image/png';
+            return response()->file(Storage::disk('public')->path($path), ['Content-Type' => $mime]);
+        }
+
+        return response()->json(['error' => 'Invalid format'], 400);
+    }
+
     public function index()
     {
         // 1. Récupération des données avec les relations (Optimisation SQL)

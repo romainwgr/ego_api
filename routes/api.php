@@ -162,3 +162,4 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects.ind
 Route::get('/getprojects',[ProjectController::class, 'getProjects'])->name('projects.getProjects');
 
 Route::get('/gliders/deployments', [GliderController::class, 'index']);
+Route::get('/gliders/map/{month}', [GliderController::class, 'getMap']);
